@@ -1,0 +1,6 @@
+
+State Machine - |lab6part2|controller:c0|current_state
+Name current_state.STATE1 current_state.STATE3 current_state.STATE2 
+current_state.STATE1 0 0 0 
+current_state.STATE2 1 0 1 
+current_state.STATE3 1 1 0 

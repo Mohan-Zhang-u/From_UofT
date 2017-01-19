@@ -1,0 +1,88 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d//SRVC/Homes$$/zhubiha1/Desktop/lab4/part2
+vDisplayCounter
+Z1 !s110 1467073611
+!i10b 1
+!s100 >Mc0fHACFZQzd]8Bzec[73
+I>0Jd0JM933bENdEMX3QY=0
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+R0
+Z3 w1467073386
+Z4 8lab4part2.v
+Z5 Flab4part2.v
+L0 18
+Z6 OV;L;10.3d;59
+r1
+!s85 0
+31
+Z7 !s108 1467073611.473000
+Z8 !s107 lab4part2.v|
+Z9 !s90 -reportprogress|300|lab4part2.v|
+!i113 1
+n@display@counter
+vhex_decoder
+R1
+!i10b 1
+!s100 JLSg;LE1`WfLbARdUFZe^3
+I7`L^?n`ZTW[`5VT[8mTYo0
+R2
+R0
+R3
+R4
+R5
+L0 77
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+vlab4part2
+R1
+!i10b 1
+!s100 W8loc_kiA4WBE:59e:@mM0
+ICm6i<CZ1XnTXo<TgcCfI_0
+R2
+R0
+R3
+R4
+R5
+L0 3
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+vRateDivider
+R1
+!i10b 1
+!s100 h`eSRH^8Qjlh;ge_HQlMW1
+IC<]D_WZa3PIc<ZPQH[`Xd1
+R2
+R0
+R3
+R4
+R5
+L0 32
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+n@rate@divider

@@ -1,0 +1,22 @@
+Class name: JShell
+Parent class: none
+Subclasses: none
+Responsibilities:
+*Provides an interface to enter commands
+*present user the current directory
+*await user input command
+*Complete execution of each command or show error message if command is invalid
+*Allow for another command to be entered after execution or error message
+Collaborators:
+*Command
+*Exit
+*Mkdir
+*Cd
+*Ls
+*Pwd
+*Cat
+*Mv
+*Cp
+*basically all the commands in the shell
+
+

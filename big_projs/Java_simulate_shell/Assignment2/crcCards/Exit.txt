@@ -1,0 +1,10 @@
+Class name: Exit
+Parent class: Command
+Responsibilities:
+*Exit the JShell
+*Provide error information if syntax is incorrect
+*Print exit message
+Collaborators:
+*JShell
+*Echo
+

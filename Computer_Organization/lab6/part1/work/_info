@@ -1,0 +1,67 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d//SRVC/Homes$$/zhubiha1/Desktop/lab6/part1
+vhex
+Z1 !s110 1468284280
+!i10b 1
+!s100 74RL74MRX_Aic0;Y]TfJK2
+Ia:NPJ9@YGh^7B8Z4djzjH2
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+R0
+Z3 w1468282990
+Z4 8lab6part1.v
+Z5 Flab6part1.v
+L0 97
+Z6 OV;L;10.3d;59
+r1
+!s85 0
+31
+Z7 !s108 1468284279.954000
+Z8 !s107 lab6part1.v|
+Z9 !s90 -reportprogress|300|lab6part1.v|
+!i113 1
+vlab6part1
+R1
+!i10b 1
+!s100 aN`:G1B=1_n6Y1=?6Ania0
+IQFTmU>40A]kjzngLW7ZkF1
+R2
+R0
+R3
+R4
+R5
+L0 5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+vram32x4
+R1
+!i10b 1
+!s100 5ZUNNe_A^?MY7zA>RSaa72
+IOSJgBke>I^U?3_;C7iCAk0
+R2
+R0
+R3
+R4
+R5
+L0 31
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1

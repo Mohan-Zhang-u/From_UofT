@@ -1,0 +1,11 @@
+Class name: Mkdir
+Parent class: Command
+Subclasses: none
+Responsibilities:
+*Create a new directory in the path (relative or absolute) specified.
+(include intermediate directories if specified)
+*Provide an error if no arguments or more than 1 argument is provided
+*Provide an error if the directory path does not exist.
+Collaborators:
+*FileSystem
+*Directory

@@ -1,0 +1,10 @@
+Class name: Directory
+Parent Class: FileSystem 
+Subclasses: none
+Responsibilities:
+*Holds information about both files and directories within Directory
+*Allows for modification of both Files and Directories
+*Allows for new Directories and Files to be created
+Collaborators:
+*Directory
+*FileSystem

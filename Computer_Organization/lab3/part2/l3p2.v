@@ -1,0 +1,131 @@
+`timescale 1ns / 1ns
+
+module l3p2 (SW, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR);
+	
+	input [7:0] SW;
+	input [2:0] KEY;
+	output [6:0] HEX0;
+	output [6:0] HEX1;
+	output [6:0] HEX2;
+	output [6:0] HEX3;
+	output [6:0] HEX4;
+	output [6:0] HEX5;
+	output [7:0] LEDR;
+	wire [7:0] aout;
+	wire [7:0] bout;
+
+	hex hex0 (.a(SW[3]),.b(SW[2]),.c(SW[1]),.d(SW[0]), .h0(HEX0[0]),.h1(HEX0[1]),.h2(HEX0[2]),.h3(HEX0[3]),.h4(HEX0[4]),.h5(HEX0[5]),.h6(HEX0[6]));
+	hex hex1 (.a(1'b0),.b(1'b0),.c(1'b0),　.d(1'b0),　.h0(HEX1[0]),.h1(HEX1[1]),.h2(HEX1[2]),.h3(HEX1[3]),.h4(HEX1[4]),.h5(HEX1[5]),.h6(HEX1[6]));
+	hex hex2 (.a(1'b0),.b(1'b0),.c(1'b0),　.d(1'b0),　.h0(HEX2[0]),.h1(HEX2[1]),.h2(HEX2[2]),.h3(HEX2[3]),.h4(HEX2[4]),.h5(HEX2[5]),.h6(HEX2[6]));
+	hex hex3 (.a(1'b0),.b(1'b0),.c(1'b0),　.d(1'b0),　.h0(HEX3[0]),.h1(HEX3[1]),.h2(HEX3[2]),.h3(HEX3[3]),.h4(HEX3[4]),.h5(HEX3[5]),.h6(HEX3[6]));
+	hex hex4 (.a(bout[3]),.b(bout[2]),.c(bout[1]),.d(bout[0]),.h0(HEX4[0]),.h1(HEX4[1]),.h2(HEX4[2]),.h3(HEX4[3]),.h4(HEX4[4]),.h5(HEX4[5]),.h6(HEX4[6]));
+	hex hex5 (.a(bout[7]),.b(bout[6]),.c(bout[5]),.d(bout[4]), .h0(HEX5[0]),.h1(HEX5[1]),.h2(HEX5[2]),.h3(HEX5[3]),.h4(HEX5[4]),.h5(HEX5[5]),.h6(HEX5[6]));
+	//connect the input from wire to input: abcd of module hex 
+
+
+	alu all(.key(KEY[3:1]), .a(SW[3:0]), .b(bout[3:0]), .ALUout(aout[7:0]));
+	
+	eight_bit_register b(.a(aout[7:0]), .out(bout[7:0]), .reset(SW[9]), .clocks(KEY[0]));
+	
+	assign LEDR[7:0] = bout[7:0];	
+	
+endmodule
+
+
+module alu (key, a, b, ALUout);
+	input [3:0] key;
+	input [3:0] a;
+	input [3:0] b;
+	output [7:0] ALUout;
+	wire [7:0] w;
+	wire x1, x2;
+
+	four_bit_full_adder fbfa1 (.a0(a[0]), .a1(a[1]), .a2(a[2]), .a3(a[3]), .b0(b[0]), .b1(b[1]), .b2(b[2]), .b3(b[3]), .ci(1'b0), .s0(w[0]), .s1(w[1]), .s2(w[2]), .s3(w[3]), .co(x1) );
+    four_bit_full_adder fbfa2 (.a0(1'b0), .a1(1'b0), .a2(1'b0), .a3(1'b0), .b0(1'b0), .b1(1'b0), .b2(1'b0), .b3(1'b0), .ci(x1), .s0(w[4]), .s1(w[5]), .s2(w[6]), .s3(w[7]), .co(x2));
+    	
+	reg [7:0] out;
+
+	always @(*) 
+	begin
+		case(key[3:1]) 
+			3'b111: out = w[7:0];
+			3'b110: out = a + b;
+			3'b101: out = {(a[3] | b[3]),(a[2] | b[2]),(a[1] | b[1]),(a[0] | b[0]),(a[3] ^ b[3]), (a[2] ^ b[2]), (a[1] ^ b[1]), (a[0] ^ b[0])};
+			3'b100: out = {8'b00000000, |{a,b}};
+			3'b011: out = {8'b00000000, &{a,b}};
+			3'b010: out = {a,b};
+			3'b001: out = b << a;
+			3'b000: out = a * b;
+			default: out = 8'b00000000;
+		endcase			
+	end
+
+	assign ALUout = out;
+
+endmodule
+
+module Register(in,out,reset,clocks);
+	input in;
+	input reset,clocks;
+	output reg out;//
+	always @(posedge clocks, negedge reset) 
+	begin
+		if (reset== 1'b0) // when reset n is 0 (note this is tested on every rising clocks edge)
+			out <= 0; // q is set to 0. Note that the assignment uses <=
+		else // when reset n is not 0
+			out <= in; // value of d passes through to output q
+	end
+endmodule
+
+module eight_bit_register(a, out, reset,clocks);
+	input clocks,reset;
+	input [7:0] a;
+	output [7:0] out;
+	//wire c1, c2, c3;
+	Register r0(.in(a[0]), .out(out[0]), .reset(reset), .clocks(clocks) );
+	Register r1(.in(a[1]), .out(out[1]), .reset(reset), .clocks(clocks) );
+	Register r2(.in(a[2]), .out(out[2]), .reset(reset), .clocks(clocks) );
+	Register r3(.in(a[3]), .out(out[3]), .reset(reset), .clocks(clocks) );
+	Register r4(.in(a[4]), .out(out[4]), .reset(reset), .clocks(clocks) );
+	Register r5(.in(a[5]), .out(out[5]), .reset(reset), .clocks(clocks) );
+	Register r6(.in(a[6]), .out(out[6]), .reset(reset), .clocks(clocks) );
+	Register r7(.in(a[7]), .out(out[7]), .reset(reset), .clocks(clocks) );
+	
+
+module hex (a,b,c,d, h0,h1,h2,h3,h4,h5,h6);
+	input a,b,c,d;
+	output h0,h1,h2,h3,h4,h5,h6;
+
+	assign h0 = (~a & ~b & ~c & d) | (~a & b & ~c & ~d) | (a & ~b & c & d) | (a & b & ~c & d);
+	assign h1 = (a & b & c) | (b & c & ~d) | (a & c & d) | (a & b & ~c & ~d) | (~a & b & ~c & d);
+	assign h2 = (a & b & c) | (~a & ~b & c & ~d) | (a & b & ~c & ~d);
+	assign h3 = (~a & ~b & ~c & d) | (~a & b & ~c & ~d) | (b & c & d) | (a & ~b & c & ~d);
+	assign h4 = (~a & d) | (~a & b & ~c) | (~b & ~c & d);
+	assign h5 = (~a & ~b & d) | (~a & ~b & c) | (~a & c & d) | (a & b & ~c & d);
+	assign h6 = (~a & ~b & ~c) | (~a & b & c & d) | (a & b & ~c & ~d);
+
+endmodule
+
+
+module four_bit_full_adder (a0, a1, a2, a3, b0, b1, b2, b3, ci,s0, s1, s2, s3, co);
+    input a0, a1, a2, a3, b0, b1, b2, b3, ci;
+    output s0, s1, s2, s3, co;
+    wire f0, f1, f2;
+    
+    full_adder fa0(.a(a0), .b(b0), .cin(ci), .sum(s0), .cout(f0));
+    full_adder fa1(.a(a1), .b(b1), .cin(f0), .sum(s1), .cout(f1));            
+    full_adder fa2(.a(a2), .b(b2), .cin(f1), .sum(s2), .cout(f2)); 
+    full_adder fa3(.a(a3), .b(b3), .cin(f2), .sum(s3), .cout(co));
+
+endmodule 
+
+module full_adder (a, b, cin, sum, cout);
+    input a, b, cin;
+    output sum, cout;
+    
+    //assign sum =  (~a & ~b & cin) | (~a & b & ~cin) | (a & ~b & ~cin) | (a & b & cin);
+    assign sum = a ^ b ^ cin;
+    //assign cout = (a & ~b & cin) | (~a & b & cin) | (a & b & ~cin) | (a & b & cin);
+    assign cout = (a & b) | (a & cin) | (b & cin);
+    
+endmodule

@@ -1,0 +1,14 @@
+|show000
+LEDR[0] <= inst15.DB_MAX_OUTPUT_PORT_TYPE
+SW3 => inst9.IN0
+SW8 => inst9.IN1
+SW8 => inst10.IN0
+SW8 => inst5.IN1
+SW8 => inst6.IN0
+SW2 => inst8.IN0
+SW9 => inst13.IN1
+SW9 => inst14.IN0
+SW1 => inst5.IN0
+SW0 => inst.IN0
+
+

@@ -1,0 +1,969 @@
+ALTER TABLE Persons
+ADD PRIMARY KEY (P_Id)
+
+
+
+Last login: Sat May 28 00:55:45 on ttys000
+zhangmohandeMacBook-Pro:~ zhangmohan$ sd
+-bash: sd: command not found
+zhangmohandeMacBook-Pro:~ zhangmohan$ ssh c5zhanii@dbsrv1.cdf.toronto.edu
+ssh: Could not resolve hostname dbsrv1.cdf.toronto.edu: nodename nor servname provided, or not known
+zhangmohandeMacBook-Pro:~ zhangmohan$ ssh c5zhanii@dbsrv1.cdf.toronto.edu
+c5zhanii@dbsrv1.cdf.toronto.edu's password: 
+                    *  Department of Computer Science *
+                    *  Computing Disciplines Facility *
+
+    Type "faq" to view CDF's FAQ, and "rules" to view CDF's usage policy.
+     Report system problems by sending email to <admin@cdf.toronto.edu>.
+
+The CDF labs are: BA2200 BA2210 BA2220 BA2240 BA2270 BA3175 BA3185 BA3195 BA3200
+Student/TA TERM accounts: Suspended on May 16th for those not in summer courses.
+--------------------------------------------------------------------------------
+
+            Computer Science Community bulletin boards:
+                https://csc.cdf.toronto.edu
+
+
+
+Last login: Sat May 28 00:55:57 2016 from public-122-83.nat.utoronto.ca
+dbsrv1:~% psql csc343h-c5zhanii
+psql (9.1.22)
+Type "help" for help.
+
+csc343h-c5zhanii=> \dt
+                  List of relations
+ Schema |          Name           | Type  |  Owner   
+--------+-------------------------+-------+----------
+ public | doctor                  | table | c5zhanii
+ public | drug_in_prescriptions   | table | c5zhanii
+ public | drug_sold_in_pharmacy   | table | c5zhanii
+ public | drugs                   | table | c5zhanii
+ public | patient                 | table | c5zhanii
+ public | pharmaceuticalcompanies | table | c5zhanii
+ public | pharmacy                | table | c5zhanii
+ public | prescriptions           | table | c5zhanii
+(8 rows)
+
+csc343h-c5zhanii=> \d+ movies       
+Did not find any relation named "movies".
+csc343h-c5zhanii=> DROP SCHEMA IF EXISTS movies CASCADE;
+NOTICE:  drop cascades to 5 other objects
+DETAIL:  drop cascades to table movies.movie
+drop cascades to table movies."MovieStar"
+drop cascades to table movies."StarsIn"
+drop cascades to table movies."MovieExec"
+drop cascades to table movies.studio
+N int
+);
+
+
+DROP SCHEMA
+csc343h-c5zhanii=> CREATE SCHEMA movies;
+CREATE SCHEMA
+csc343h-c5zhanii=> SET SEARCH_PATH TO movies;
+SET
+csc343h-c5zhanii=> 
+csc343h-c5zhanii=> DROP TABLE IF EXISTS Movie CASCADE; 
+NOTICE:  table "movie" does not exist, skipping
+DROP TABLE
+csc343h-c5zhanii=> /* Delete table if it already exists */
+csc343h-c5zhanii-> 
+csc343h-c5zhanii-> CREATE TABLE Movie ( 
+csc343h-c5zhanii(> title varchar(30), 
+csc343h-c5zhanii(> year int, 
+csc343h-c5zhanii(> length int, 
+csc343h-c5zhanii(> inColor int, 
+csc343h-c5zhanii(> studioName varchar(20), 
+csc343h-c5zhanii(> producerC int
+csc343h-c5zhanii(>  );
+CREATE TABLE
+csc343h-c5zhanii=> 
+csc343h-c5zhanii=> 
+csc343h-c5zhanii=>  
+csc343h-c5zhanii=> DROP TABLE IF EXISTS "MovieStar" CASCADE; 
+NOTICE:  table "MovieStar" does not exist, skipping
+DROP TABLE
+csc343h-c5zhanii=> /* Delete table if it already exists */
+csc343h-c5zhanii-> 
+csc343h-c5zhanii-> CREATE TABLE "MovieStar"(
+csc343h-c5zhanii(>         name varchar(30),
+csc343h-c5zhanii(>         address varchar(30),
+csc343h-c5zhanii(>         gender char(1),
+csc343h-c5zhanii(>         birthdate date
+csc343h-c5zhanii(> );
+CREATE TABLE
+csc343h-c5zhanii=> 
+csc343h-c5zhanii=> 
+csc343h-c5zhanii=> DROP TABLE IF EXISTS "StarsIn" CASCADE; 
+NOTICE:  table "StarsIn" does not exist, skipping
+DROP TABLE
+csc343h-c5zhanii=> /* Delete table if it already exists */ 
+csc343h-c5zhanii-> 
+csc343h-c5zhanii-> CREATE TABLE "StarsIn" 
+csc343h-c5zhanii-> (
+csc343h-c5zhanii(>  movieTitle varchar(30), 
+csc343h-c5zhanii(> movieYear int, 
+csc343h-c5zhanii(> starName varchar(30)
+csc343h-c5zhanii(> );
+CREATE TABLE
+csc343h-c5zhanii=> 
+csc343h-c5zhanii=> 
+csc343h-c5zhanii=> DROP TABLE IF EXISTS "MovieExec" CASCADE; 
+NOTICE:  table "MovieExec" does not exist, skipping
+DROP TABLE
+csc343h-c5zhanii=> /* Delete table if it already exists */
+csc343h-c5zhanii-> create table "MovieExec"(
+csc343h-c5zhanii(>         name varchar(30),
+csc343h-c5zhanii(>         address varchar(30), 
+csc343h-c5zhanii(>         certN int, 
+csc343h-c5zhanii(>         netWorth int
+csc343h-c5zhanii(> );
+CREATE TABLE
+csc343h-c5zhanii=> 
+csc343h-c5zhanii=> DROP TABLE IF EXISTS Studio CASCADE;
+NOTICE:  table "studio" does not exist, skipping
+DROP TABLE
+csc343h-c5zhanii=> 
+csc343h-c5zhanii=> create table Studio(
+csc343h-c5zhanii(>   name varchar(30),
+csc343h-c5zhanii(>  address varchar(30),
+csc343h-c5zhanii(>      presCertN int
+csc343h-c5zhanii(> );
+CREATE TABLE
+csc343h-c5zhanii=> 
+csc343h-c5zhanii=> 
+csc343h-c5zhanii=> \dt
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ movies | MovieExec | table | c5zhanii
+ movies | MovieStar | table | c5zhanii
+ movies | StarsIn   | table | c5zhanii
+ movies | movie     | table | c5zhanii
+ movies | studio    | table | c5zhanii
+(5 rows)
+
+csc343h-c5zhanii=> ls
+csc343h-c5zhanii-> ;
+ERROR:  syntax error at or near "ls"
+LINE 1: ls
+        ^
+csc343h-c5zhanii=> alter table movie
+csc343h-c5zhanii-> add primary key(title,year);
+NOTICE:  ALTER TABLE / ADD PRIMARY KEY will create implicit index "movie_pkey" for table "movie"
+ALTER TABLE
+csc343h-c5zhanii=> alter table MovieStar
+csc343h-c5zhanii-> CONSTRAINT PRIMARY KEY (name, address);
+ERROR:  syntax error at or near "CONSTRAINT"
+LINE 2: CONSTRAINT PRIMARY KEY (name, address);
+        ^
+csc343h-c5zhanii=> alter table MovieStar
+csc343h-c5zhanii-> add primary key(title,year);
+ERROR:  relation "moviestar" does not exist
+csc343h-c5zhanii=> alter table moviestar 
+csc343h-c5zhanii-> add primary key(name, address);
+ERROR:  relation "moviestar" does not exist
+csc343h-c5zhanii=> \dt
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ movies | MovieExec | table | c5zhanii
+ movies | MovieStar | table | c5zhanii
+ movies | StarsIn   | table | c5zhanii
+ movies | movie     | table | c5zhanii
+ movies | studio    | table | c5zhanii
+(5 rows)
+
+csc343h-c5zhanii=> \d+ movie
+                          Table "movies.movie"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ title      | character varying(30) | not null  | extended | 
+ year       | integer               | not null  | plain    | 
+ length     | integer               |           | plain    | 
+ incolor    | integer               |           | plain    | 
+ studioname | character varying(20) |           | extended | 
+ producerc  | integer               |           | plain    | 
+Indexes:
+    "movie_pkey" PRIMARY KEY, btree (title, year)
+Has OIDs: no
+
+csc343h-c5zhanii=> \dt
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ movies | MovieExec | table | c5zhanii
+ movies | MovieStar | table | c5zhanii
+ movies | StarsIn   | table | c5zhanii
+ movies | movie     | table | c5zhanii
+ movies | studio    | table | c5zhanii
+(5 rows)
+
+csc343h-c5zhanii=> alter table doctor
+csc343h-c5zhanii-> ;
+ERROR:  syntax error at or near ";"
+LINE 2: ;
+        ^
+csc343h-c5zhanii=> alter table doctor;
+ERROR:  syntax error at or near ";"
+LINE 1: alter table doctor;
+                          ^
+csc343h-c5zhanii=> alter table doctor
+csc343h-c5zhanii-> add primary key (name);
+ERROR:  relation "doctor" does not exist
+csc343h-c5zhanii=> \dt
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ movies | MovieExec | table | c5zhanii
+ movies | MovieStar | table | c5zhanii
+ movies | StarsIn   | table | c5zhanii
+ movies | movie     | table | c5zhanii
+ movies | studio    | table | c5zhanii
+(5 rows)
+
+csc343h-c5zhanii=> \i path/
+path: No such file or directory
+csc343h-c5zhanii=> \i ls
+ls: No such file or directory
+csc343h-c5zhanii=> \d+ movie
+                          Table "movies.movie"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ title      | character varying(30) | not null  | extended | 
+ year       | integer               | not null  | plain    | 
+ length     | integer               |           | plain    | 
+ incolor    | integer               |           | plain    | 
+ studioname | character varying(20) |           | extended | 
+ producerc  | integer               |           | plain    | 
+Indexes:
+    "movie_pkey" PRIMARY KEY, btree (title, year)
+Has OIDs: no
+
+csc343h-c5zhanii=> \d+ movies
+Did not find any relation named "movies".
+csc343h-c5zhanii=> \d+ studio
+                         Table "movies.studio"
+  Column   |         Type          | Modifiers | Storage  | Description 
+-----------+-----------------------+-----------+----------+-------------
+ name      | character varying(30) |           | extended | 
+ address   | character varying(30) |           | extended | 
+ prescertn | integer               |           | plain    | 
+Has OIDs: no
+
+csc343h-c5zhanii=> \d+ moviespacket_write_wait: Connection to 128.100.31.245: Broken pipe
+zhangmohandeMacBook-Pro:~ zhangmohan$ ssh c5zhanii@dbsrv1.cdf.toronto.edu
+c5zhanii@dbsrv1.cdf.toronto.edu's password: 
+                    *  Department of Computer Science *
+                    *  Computing Disciplines Facility *
+
+    Type "faq" to view CDF's FAQ, and "rules" to view CDF's usage policy.
+     Report system problems by sending email to <admin@cdf.toronto.edu>.
+
+The CDF labs are: BA2200 BA2210 BA2220 BA2240 BA2270 BA3175 BA3185 BA3195 BA3200
+Student/TA TERM accounts: Suspended on May 16th for those not in summer courses.
+--------------------------------------------------------------------------------
+
+            Computer Science Community bulletin boards:
+                https://csc.cdf.toronto.edu
+
+
+
+Last login: Sat May 28 01:21:22 2016 from user130-73.resnet.utoronto.ca
+dbsrv1:~% psql csc343h-c5zhanii
+psql (9.1.22)
+Type "help" for help.
+
+csc343h-c5zhanii=> \dt
+                  List of relations
+ Schema |          Name           | Type  |  Owner   
+--------+-------------------------+-------+----------
+ public | doctor                  | table | c5zhanii
+ public | drug_in_prescriptions   | table | c5zhanii
+ public | drug_sold_in_pharmacy   | table | c5zhanii
+ public | drugs                   | table | c5zhanii
+ public | patient                 | table | c5zhanii
+ public | pharmaceuticalcompanies | table | c5zhanii
+ public | pharmacy                | table | c5zhanii
+ public | prescriptions           | table | c5zhanii
+(8 rows)
+
+csc343h-c5zhanii=> SET SEARCH_PATH TO movies;
+SET
+csc343h-c5zhanii=> \dt
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ movies | MovieExec | table | c5zhanii
+ movies | MovieStar | table | c5zhanii
+ movies | StarsIn   | table | c5zhanii
+ movies | movie     | table | c5zhanii
+ movies | studio    | table | c5zhanii
+(5 rows)
+
+csc343h-c5zhanii=> \d+ moviestar
+Did not find any relation named "moviestar".
+csc343h-c5zhanii=> \d+ MovieStar
+Did not find any relation named "MovieStar".
+csc343h-c5zhanii=> \d+ movieexec
+Did not find any relation named "movieexec".
+csc343h-c5zhanii=> \d+ MovieExec
+Did not find any relation named "MovieExec".
+csc343h-c5zhanii=> \d+ movie
+                          Table "movies.movie"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ title      | character varying(30) | not null  | extended | 
+ year       | integer               | not null  | plain    | 
+ length     | integer               |           | plain    | 
+ incolor    | integer               |           | plain    | 
+ studioname | character varying(20) |           | extended | 
+ producerc  | integer               |           | plain    | 
+Indexes:
+    "movie_pkey" PRIMARY KEY, btree (title, year)
+Has OIDs: no
+
+csc343h-c5zhanii=> \d+ "MoiveStar"
+Did not find any relation named ""MoiveStar"".
+csc343h-c5zhanii=> \dt
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ movies | MovieExec | table | c5zhanii
+ movies | MovieStar | table | c5zhanii
+ movies | StarsIn   | table | c5zhanii
+ movies | movie     | table | c5zhanii
+ movies | studio    | table | c5zhanii
+(5 rows)
+
+csc343h-c5zhanii=> \d+ movie
+                          Table "movies.movie"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ title      | character varying(30) | not null  | extended | 
+ year       | integer               | not null  | plain    | 
+ length     | integer               |           | plain    | 
+ incolor    | integer               |           | plain    | 
+ studioname | character varying(20) |           | extended | 
+ producerc  | integer               |           | plain    | 
+Indexes:
+    "movie_pkey" PRIMARY KEY, btree (title, year)
+Has OIDs: no
+
+csc343h-c5zhanii=> \d+ studio
+                         Table "movies.studio"
+  Column   |         Type          | Modifiers | Storage  | Description 
+-----------+-----------------------+-----------+----------+-------------
+ name      | character varying(30) |           | extended | 
+ address   | character varying(30) |           | extended | 
+ prescertn | integer               |           | plain    | 
+Has OIDs: no
+
+csc343h-c5zhanii=> table
+csc343h-c5zhanii-> movie;
+ title | year | length | incolor | studioname | producerc 
+-------+------+--------+---------+------------+-----------
+(0 rows)
+
+csc343h-c5zhanii=> table MovieStar
+csc343h-c5zhanii-> ;
+ERROR:  relation "moviestar" does not exist
+LINE 1: table MovieStar
+              ^
+csc343h-c5zhanii=> DROP TABLE IF EXISTS "MovieStar" CASCADE; 
+DROP TABLE
+csc343h-c5zhanii=> /* Delete table if it already exists */
+csc343h-c5zhanii-> 
+csc343h-c5zhanii-> CREATE TABLE "MovieStar"(
+csc343h-c5zhanii(>         name varchar(30),
+csc343h-c5zhanii(>         address varchar(30),
+csc343h-c5zhanii(>         gender char(1),
+csc343h-c5zhanii(>         birthdate date
+csc343h-c5zhanii(> );
+CREATE TABLE
+csc343h-c5zhanii=> \d+ MovieStar
+Did not find any relation named "MovieStar".
+csc343h-c5zhanii=> \d+ "MovieStar"
+                        Table "movies.MovieStar"
+  Column   |         Type          | Modifiers | Storage  | Description 
+-----------+-----------------------+-----------+----------+-------------
+ name      | character varying(30) |           | extended | 
+ address   | character varying(30) |           | extended | 
+ gender    | character(1)          |           | extended | 
+ birthdate | date                  |           | plain    | 
+Has OIDs: no
+
+csc343h-c5zhanii=> \d+ movie
+                          Table "movies.movie"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ title      | character varying(30) | not null  | extended | 
+ year       | integer               | not null  | plain    | 
+ length     | integer               |           | plain    | 
+ incolor    | integer               |           | plain    | 
+ studioname | character varying(20) |           | extended | 
+ producerc  | integer               |           | plain    | 
+Indexes:
+    "movie_pkey" PRIMARY KEY, btree (title, year)
+Has OIDs: no
+
+csc343h-c5zhanii=> \dt
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ movies | MovieExec | table | c5zhanii
+ movies | MovieStar | table | c5zhanii
+ movies | StarsIn   | table | c5zhanii
+ movies | movie     | table | c5zhanii
+ movies | studio    | table | c5zhanii
+(5 rows)
+
+csc343h-c5zhanii=> alter table "MovieStar"
+csc343h-c5zhanii-> add primary key(name,address);
+NOTICE:  ALTER TABLE / ADD PRIMARY KEY will create implicit index "MovieStar_pkey" for table "MovieStar"
+ALTER TABLE
+csc343h-c5zhanii=> alter table "StarIn"
+csc343h-c5zhanii-> add primary key(movieTitle,movieYear,starName);
+ERROR:  relation "StarIn" does not exist
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> add primary key(movieTitle,movieYear,starName);
+NOTICE:  ALTER TABLE / ADD PRIMARY KEY will create implicit index "StarsIn_pkey" for table "StarsIn"
+ALTER TABLE
+csc343h-c5zhanii=> \d+ "StarsIn"
+                         Table "movies.StarsIn"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ movietitle | character varying(30) | not null  | extended | 
+ movieyear  | integer               | not null  | plain    | 
+ starname   | character varying(30) | not null  | extended | 
+Indexes:
+    "StarsIn_pkey" PRIMARY KEY, btree (movietitle, movieyear, starname)
+Has OIDs: no
+
+csc343h-c5zhanii=> alter table "MovieExec"
+csc343h-c5zhanii-> add primary key (name,address);
+NOTICE:  ALTER TABLE / ADD PRIMARY KEY will create implicit index "MovieExec_pkey" for table "MovieExec"
+ALTER TABLE
+csc343h-c5zhanii=> \dt                
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ movies | MovieExec | table | c5zhanii
+ movies | MovieStar | table | c5zhanii
+ movies | StarsIn   | table | c5zhanii
+ movies | movie     | table | c5zhanii
+ movies | studio    | table | c5zhanii
+(5 rows)
+
+csc343h-c5zhanii=> alter table "Studio"
+csc343h-c5zhanii-> add primary key(name,address);
+ERROR:  relation "Studio" does not exist
+csc343h-c5zhanii=> alter table studio
+csc343h-c5zhanii-> add primary key(name,address);
+NOTICE:  ALTER TABLE / ADD PRIMARY KEY will create implicit index "studio_pkey" for table "studio"
+ALTER TABLE
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> FOREIGN KEY(title,year) REFERENCES Movie(title,year); 
+ERROR:  syntax error at or near "FOREIGN"
+LINE 2: FOREIGN KEY(title,year) REFERENCES Movie(title,year);
+        ^
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> add foreign key (title,year) REFERENCES Movie(title,year);
+ERROR:  column "title" referenced in foreign key constraint does not exist
+csc343h-c5zhanii=> \d + "StarsIn"
+ERROR:  invalid regular expression: quantifier operand invalid
+csc343h-c5zhanii=> \d+ "StarsIn"
+                         Table "movies.StarsIn"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ movietitle | character varying(30) | not null  | extended | 
+ movieyear  | integer               | not null  | plain    | 
+ starname   | character varying(30) | not null  | extended | 
+Indexes:
+    "StarsIn_pkey" PRIMARY KEY, btree (movietitle, movieyear, starname)
+Has OIDs: no
+
+csc343h-c5zhanii=> \d+ movie
+                          Table "movies.movie"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ title      | character varying(30) | not null  | extended | 
+ year       | integer               | not null  | plain    | 
+ length     | integer               |           | plain    | 
+ incolor    | integer               |           | plain    | 
+ studioname | character varying(20) |           | extended | 
+ producerc  | integer               |           | plain    | 
+Indexes:
+    "movie_pkey" PRIMARY KEY, btree (title, year)
+Has OIDs: no
+
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> add foreign key(movietitle,movieyear)REFERENCES Movie(title,year);
+ALTER TABLE
+csc343h-c5zhanii=> \d+ "StarsIn"
+                         Table "movies.StarsIn"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ movietitle | character varying(30) | not null  | extended | 
+ movieyear  | integer               | not null  | plain    | 
+ starname   | character varying(30) | not null  | extended | 
+Indexes:
+    "StarsIn_pkey" PRIMARY KEY, btree (movietitle, movieyear, starname)
+Foreign-key constraints:
+    "StarsIn_movietitle_fkey" FOREIGN KEY (movietitle, movieyear) REFERENCES movie(title, year)
+Has OIDs: no
+
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> add foreign key (starname) references MovieStar(name);
+ERROR:  relation "moviestar" does not exist
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> add foreign key (starname) references "MovieStar"(name);
+ERROR:  there is no unique constraint matching given keys for referenced table "MovieStar"
+csc343h-c5zhanii=> \d+ "MovieStar"
+                        Table "movies.MovieStar"
+  Column   |         Type          | Modifiers | Storage  | Description 
+-----------+-----------------------+-----------+----------+-------------
+ name      | character varying(30) | not null  | extended | 
+ address   | character varying(30) | not null  | extended | 
+ gender    | character(1)          |           | extended | 
+ birthdate | date                  |           | plain    | 
+Indexes:
+    "MovieStar_pkey" PRIMARY KEY, btree (name, address)
+Has OIDs: no
+
+csc343h-c5zhanii=> drop table "MovieStar"
+csc343h-c5zhanii-> ;
+DROP TABLE
+csc343h-c5zhanii=> CREATE TABLE "MovieStar"(
+csc343h-c5zhanii(>         name varchar(30),
+csc343h-c5zhanii(>         address varchar(30),
+csc343h-c5zhanii(>         gender char(1),
+csc343h-c5zhanii(>         birthdate date
+csc343h-c5zhanii(> );
+CREATE TABLE
+csc343h-c5zhanii=> alter table "MovieStar"
+csc343h-c5zhanii-> add primary key (name);
+NOTICE:  ALTER TABLE / ADD PRIMARY KEY will create implicit index "MovieStar_pkey" for table "MovieStar"
+ALTER TABLE
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> add foreign key (starname) references "MovieStar"(name);
+ALTER TABLE
+csc343h-c5zhanii=> \d+ "StarIn"
+Did not find any relation named ""StarIn"".
+csc343h-c5zhanii=> \d+ "StarsIn"
+                         Table "movies.StarsIn"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ movietitle | character varying(30) | not null  | extended | 
+ movieyear  | integer               | not null  | plain    | 
+ starname   | character varying(30) | not null  | extended | 
+Indexes:
+    "StarsIn_pkey" PRIMARY KEY, btree (movietitle, movieyear, starname)
+Foreign-key constraints:
+    "StarsIn_movietitle_fkey" FOREIGN KEY (movietitle, movieyear) REFERENCES movie(title, year)
+    "StarsIn_starname_fkey" FOREIGN KEY (starname) REFERENCES "MovieStar"(name)
+Has OIDs: no
+
+csc343h-c5zhanii=> \d+ "StarsIn"
+                         Table "movies.StarsIn"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ movietitle | character varying(30) | not null  | extended | 
+ movieyear  | integer               | not null  | plain    | 
+ starname   | character varying(30) | not null  | extended | 
+Indexes:
+    "StarsIn_pkey" PRIMARY KEY, btree (movietitle, movieyear, starname)
+Foreign-key constraints:
+    "StarsIn_movietitle_fkey" FOREIGN KEY (movietitle, movieyear) REFERENCES movie(title, year)
+    "StarsIn_starname_fkey" FOREIGN KEY (starname) REFERENCES "MovieStar"(name)
+Has OIDs: no
+
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> drop foreign key StarsIn_movietitle_fkey StarsIn_starname_fkey;
+ERROR:  syntax error at or near "foreign"
+LINE 2: drop foreign key StarsIn_movietitle_fkey StarsIn_starname_fk...
+             ^
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> rop foreign key StarsIn_movietitle_fkey;
+ERROR:  syntax error at or near "rop"
+LINE 2: rop foreign key StarsIn_movietitle_fkey;
+        ^
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> drop foreign key 'StarsIn_movietitle_fkey' 'StarsIn_starname_fkey';
+ERROR:  syntax error at or near "foreign"
+LINE 2: drop foreign key 'StarsIn_movietitle_fkey' 'StarsIn_starname...
+             ^
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> drop foreign key 'StarsIn_movietitle_fkey';
+ERROR:  syntax error at or near "foreign"
+LINE 2: drop foreign key 'StarsIn_movietitle_fkey';
+             ^
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> drop foreign key "StarsIn_movietitle_fkey"
+csc343h-c5zhanii-> ;
+ERROR:  syntax error at or near "foreign"
+LINE 2: drop foreign key "StarsIn_movietitle_fkey"
+             ^
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> DROP FOREIGN KEY StarsIn_movietitle_fkey;
+ERROR:  syntax error at or near "FOREIGN"
+LINE 2: DROP FOREIGN KEY StarsIn_movietitle_fkey;
+             ^
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> DROP FOREIGN KEY "StarsIn_movietitle_fkey";
+ERROR:  syntax error at or near "FOREIGN"
+LINE 2: DROP FOREIGN KEY "StarsIn_movietitle_fkey";
+             ^
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> DROP FOREIGN KEY;
+ERROR:  syntax error at or near "FOREIGN"
+LINE 2: DROP FOREIGN KEY;
+             ^
+csc343h-c5zhanii=> alter table "StarsIn" drop constraint StarsIn_movietitle_fkey
+csc343h-c5zhanii-> StarsIn_starname_fkey;
+ERROR:  syntax error at or near "StarsIn_starname_fkey"
+LINE 2: StarsIn_starname_fkey;
+        ^
+csc343h-c5zhanii=> alter table "StarsIn" drop constraint StarsIn_movietitle_fkey;
+ERROR:  constraint "starsin_movietitle_fkey" of relation "StarsIn" does not exist
+csc343h-c5zhanii=> \d+ "StarsIn"
+                         Table "movies.StarsIn"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ movietitle | character varying(30) | not null  | extended | 
+ movieyear  | integer               | not null  | plain    | 
+ starname   | character varying(30) | not null  | extended | 
+Indexes:
+    "StarsIn_pkey" PRIMARY KEY, btree (movietitle, movieyear, starname)
+Foreign-key constraints:
+    "StarsIn_movietitle_fkey" FOREIGN KEY (movietitle, movieyear) REFERENCES movie(title, year)
+    "StarsIn_starname_fkey" FOREIGN KEY (starname) REFERENCES "MovieStar"(name)
+Has OIDs: no
+
+csc343h-c5zhanii=> alter table "StarsIn" drop constraint StarsIn_movietitle_fkey;
+ERROR:  constraint "starsin_movietitle_fkey" of relation "StarsIn" does not exist
+csc343h-c5zhanii=> alter table "StarsIn" drop constraint "StarsIn_movietitle_fkey";
+ALTER TABLE
+csc343h-c5zhanii=> alter table "StarsIn" drop constraint "StarsIn_starname_fkey" ;
+ALTER TABLE
+csc343h-c5zhanii=> \d+ "StarsIn"
+                         Table "movies.StarsIn"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ movietitle | character varying(30) | not null  | extended | 
+ movieyear  | integer               | not null  | plain    | 
+ starname   | character varying(30) | not null  | extended | 
+Indexes:
+    "StarsIn_pkey" PRIMARY KEY, btree (movietitle, movieyear, starname)
+Has OIDs: no
+
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> add foreign key(movietitle,movieyear)REFERENCES Movie(title,year)
+csc343h-c5zhanii-> ON DELETE CASCADE
+csc343h-c5zhanii-> ON UPDATE Default;
+ERROR:  syntax error at or near "Default"
+LINE 4: ON UPDATE Default;
+                  ^
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> add foreign key (starname) references "MovieStar"(name)
+csc343h-c5zhanii-> ON DELETE CASCADE
+csc343h-c5zhanii-> ON UPDATE Default;
+ERROR:  syntax error at or near "Default"
+LINE 4: ON UPDATE Default;
+                  ^
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> add foreign key(movietitle,movieyear)REFERENCES Movie(title,year)
+csc343h-c5zhanii-> ON DELETE CASCADE;
+ALTER TABLE
+csc343h-c5zhanii=> alter table "StarsIn"
+csc343h-c5zhanii-> add foreign key (starname) references "MovieStar"(name)
+csc343h-c5zhanii-> ON DELETE CASCADE;
+ALTER TABLE
+csc343h-c5zhanii=> \d+ "StarsIn"
+                         Table "movies.StarsIn"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ movietitle | character varying(30) | not null  | extended | 
+ movieyear  | integer               | not null  | plain    | 
+ starname   | character varying(30) | not null  | extended | 
+Indexes:
+    "StarsIn_pkey" PRIMARY KEY, btree (movietitle, movieyear, starname)
+Foreign-key constraints:
+    "StarsIn_movietitle_fkey" FOREIGN KEY (movietitle, movieyear) REFERENCES movie(title, year) ON DELETE CASCADE
+    "StarsIn_starname_fkey" FOREIGN KEY (starname) REFERENCES "MovieStar"(name) ON DELETE CASCADE
+Has OIDs: no
+
+csc343h-c5zhanii=> packet_write_wait: Connection to 128.100.31.245: Broken pipe
+zhangmohandeMacBook-Pro:~ zhangmohan$ dsf
+-bash: dsf: command not found
+zhangmohandeMacBook-Pro:~ zhangmohan$ ssh c5zhanii@dbsrv1.cdf.toronto.edu
+c5zhanii@dbsrv1.cdf.toronto.edu's password: 
+                    *  Department of Computer Science *
+                    *  Computing Disciplines Facility *
+
+    Type "faq" to view CDF's FAQ, and "rules" to view CDF's usage policy.
+     Report system problems by sending email to <admin@cdf.toronto.edu>.
+
+The CDF labs are: BA2200 BA2210 BA2220 BA2240 BA2270 BA3175 BA3185 BA3195 BA3200
+Student/TA TERM accounts: Suspended on May 16th for those not in summer courses.
+--------------------------------------------------------------------------------
+
+            Computer Science Community bulletin boards:
+                https://csc.cdf.toronto.edu
+
+
+
+Last login: Sat May 28 01:33:06 2016 from user130-73.resnet.utoronto.ca
+dbsrv1:~% psql csc343h-c5zhanii
+psql (9.1.22)
+Type "help" for help.
+
+csc343h-c5zhanii=> \dt
+                  List of relations
+ Schema |          Name           | Type  |  Owner   
+--------+-------------------------+-------+----------
+ public | doctor                  | table | c5zhanii
+ public | drug_in_prescriptions   | table | c5zhanii
+ public | drug_sold_in_pharmacy   | table | c5zhanii
+ public | drugs                   | table | c5zhanii
+ public | patient                 | table | c5zhanii
+ public | pharmaceuticalcompanies | table | c5zhanii
+ public | pharmacy                | table | c5zhanii
+ public | prescriptions           | table | c5zhanii
+(8 rows)
+
+csc343h-c5zhanii=> set search_path to movies;
+SET
+csc343h-c5zhanii=> \dt
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ movies | MovieExec | table | c5zhanii
+ movies | MovieStar | table | c5zhanii
+ movies | StarsIn   | table | c5zhanii
+ movies | movie     | table | c5zhanii
+ movies | studio    | table | c5zhanii
+(5 rows)
+
+csc343h-c5zhanii=> \d+ MovieStar
+Did not find any relation named "MovieStar".
+csc343h-c5zhanii=> \d+ "MovieStar"
+                        Table "movies.MovieStar"
+  Column   |         Type          | Modifiers | Storage  | Description 
+-----------+-----------------------+-----------+----------+-------------
+ name      | character varying(30) | not null  | extended | 
+ address   | character varying(30) |           | extended | 
+ gender    | character(1)          |           | extended | 
+ birthdate | date                  |           | plain    | 
+Indexes:
+    "MovieStar_pkey" PRIMARY KEY, btree (name)
+Referenced by:
+    TABLE ""StarsIn"" CONSTRAINT "StarsIn_starname_fkey" FOREIGN KEY (starname) REFERENCES "MovieStar"(name) ON DELETE CASCADE
+Has OIDs: no
+
+csc343h-c5zhanii=> alter table "MovieStar"
+csc343h-c5zhanii-> drop constraint "StarsIn_starname_fkey";
+ERROR:  constraint "StarsIn_starname_fkey" of relation "MovieStar" does not exist
+csc343h-c5zhanii=> alter table "MovieStar"
+csc343h-c5zhanii-> \d+ studio
+                         Table "movies.studio"
+  Column   |         Type          | Modifiers | Storage  | Description 
+-----------+-----------------------+-----------+----------+-------------
+ name      | character varying(30) | not null  | extended | 
+ address   | character varying(30) | not null  | extended | 
+ prescertn | integer               |           | plain    | 
+Indexes:
+    "studio_pkey" PRIMARY KEY, btree (name, address)
+Has OIDs: no
+
+csc343h-c5zhanii-> s
+csc343h-c5zhanii-> ;
+ERROR:  syntax error at or near "s"
+LINE 2: s
+        ^
+csc343h-c5zhanii=> alter table studio
+csc343h-c5zhanii-> drop constraint studio_pkey;
+ALTER TABLE
+csc343h-c5zhanii=> alter table studio
+csc343h-c5zhanii-> add primary key (name);
+NOTICE:  ALTER TABLE / ADD PRIMARY KEY will create implicit index "studio_pkey" for table "studio"
+ALTER TABLE
+csc343h-c5zhanii=> \d+ "MovieExec"
+                       Table "movies.MovieExec"
+  Column  |         Type          | Modifiers | Storage  | Description 
+----------+-----------------------+-----------+----------+-------------
+ name     | character varying(30) | not null  | extended | 
+ address  | character varying(30) | not null  | extended | 
+ certn    | integer               |           | plain    | 
+ networth | integer               |           | plain    | 
+Indexes:
+    "MovieExec_pkey" PRIMARY KEY, btree (name, address)
+Has OIDs: no
+
+csc343h-c5zhanii=> drop constraint "MovieExec_pkey";
+ERROR:  syntax error at or near "constraint"
+LINE 1: drop constraint "MovieExec_pkey";
+             ^
+csc343h-c5zhanii=> alter table "MovieExec"
+csc343h-c5zhanii-> drop constraint "MovieExec_pkey";
+ALTER TABLE
+csc343h-c5zhanii=> alter table "MovieExec"
+csc343h-c5zhanii-> add primary key (certn);
+NOTICE:  ALTER TABLE / ADD PRIMARY KEY will create implicit index "MovieExec_pkey" for table "MovieExec"
+ALTER TABLE
+csc343h-c5zhanii=> alter table "MovieExec"
+csc343h-c5zhanii-> add ;
+ERROR:  syntax error at or near ";"
+LINE 2: add ;
+            ^
+csc343h-c5zhanii=> \d+ "MovieExec"
+                       Table "movies.MovieExec"
+  Column  |         Type          | Modifiers | Storage  | Description 
+----------+-----------------------+-----------+----------+-------------
+ name     | character varying(30) | not null  | extended | 
+ address  | character varying(30) | not null  | extended | 
+ certn    | integer               | not null  | plain    | 
+ networth | integer               |           | plain    | 
+Indexes:
+    "MovieExec_pkey" PRIMARY KEY, btree (certn)
+Has OIDs: no
+
+csc343h-c5zhanii=> \dt 
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ movies | MovieExec | table | c5zhanii
+ movies | MovieStar | table | c5zhanii
+ movies | StarsIn   | table | c5zhanii
+ movies | movie     | table | c5zhanii
+ movies | studio    | table | c5zhanii
+(5 rows)
+
+csc343h-c5zhanii=> \d+ "StarsIn"
+                         Table "movies.StarsIn"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ movietitle | character varying(30) | not null  | extended | 
+ movieyear  | integer               | not null  | plain    | 
+ starname   | character varying(30) | not null  | extended | 
+Indexes:
+    "StarsIn_pkey" PRIMARY KEY, btree (movietitle, movieyear, starname)
+Foreign-key constraints:
+    "StarsIn_movietitle_fkey" FOREIGN KEY (movietitle, movieyear) REFERENCES movie(title, year) ON DELETE CASCADE
+    "StarsIn_starname_fkey" FOREIGN KEY (starname) REFERENCES "MovieStar"(name) ON DELETE CASCADE
+Has OIDs: no
+
+csc343h-c5zhanii=> \d+ "MovieStar"
+                        Table "movies.MovieStar"
+  Column   |         Type          | Modifiers | Storage  | Description 
+-----------+-----------------------+-----------+----------+-------------
+ name      | character varying(30) | not null  | extended | 
+ address   | character varying(30) |           | extended | 
+ gender    | character(1)          |           | extended | 
+ birthdate | date                  |           | plain    | 
+Indexes:
+    "MovieStar_pkey" PRIMARY KEY, btree (name)
+Referenced by:
+    TABLE ""StarsIn"" CONSTRAINT "StarsIn_starname_fkey" FOREIGN KEY (starname) REFERENCES "MovieStar"(name) ON DELETE CASCADE
+Has OIDs: no
+
+csc343h-c5zhanii=> \d+ "MovieExec"
+                       Table "movies.MovieExec"
+  Column  |         Type          | Modifiers | Storage  | Description 
+----------+-----------------------+-----------+----------+-------------
+ name     | character varying(30) | not null  | extended | 
+ address  | character varying(30) | not null  | extended | 
+ certn    | integer               | not null  | plain    | 
+ networth | integer               |           | plain    | 
+Indexes:
+    "MovieExec_pkey" PRIMARY KEY, btree (certn)
+Has OIDs: no
+
+csc343h-c5zhanii=> drop table "MovieExec"
+csc343h-c5zhanii-> ;
+DROP TABLE
+csc343h-c5zhanii=> DROP TABLE IF EXISTS "MovieExec" CASCADE; 
+NOTICE:  table "MovieExec" does not exist, skipping
+DROP TABLE
+csc343h-c5zhanii=> /* Delete table if it already exists */
+csc343h-c5zhanii-> create table "MovieExec"(
+csc343h-c5zhanii(>         name varchar(30),
+csc343h-c5zhanii(>         address varchar(30), 
+csc343h-c5zhanii(>         certN int, 
+csc343h-c5zhanii(>         netWorth int
+csc343h-c5zhanii(> );
+CREATE TABLE
+csc343h-c5zhanii=> \d+ "MovieExec"
+                       Table "movies.MovieExec"
+  Column  |         Type          | Modifiers | Storage  | Description 
+----------+-----------------------+-----------+----------+-------------
+ name     | character varying(30) |           | extended | 
+ address  | character varying(30) |           | extended | 
+ certn    | integer               |           | plain    | 
+ networth | integer               |           | plain    | 
+Has OIDs: no
+
+csc343h-c5zhanii=> alter table "MovieExec" add primary key (certn);
+NOTICE:  ALTER TABLE / ADD PRIMARY KEY will create implicit index "MovieExec_pkey" for table "MovieExec"
+ALTER TABLE
+csc343h-c5zhanii=> \d+ "MovieExec";
+                       Table "movies.MovieExec"
+  Column  |         Type          | Modifiers | Storage  | Description 
+----------+-----------------------+-----------+----------+-------------
+ name     | character varying(30) |           | extended | 
+ address  | character varying(30) |           | extended | 
+ certn    | integer               | not null  | plain    | 
+ networth | integer               |           | plain    | 
+Indexes:
+    "MovieExec_pkey" PRIMARY KEY, btree (certn)
+Has OIDs: no
+
+csc343h-c5zhanii=> \d+ movie 
+                          Table "movies.movie"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ title      | character varying(30) | not null  | extended | 
+ year       | integer               | not null  | plain    | 
+ length     | integer               |           | plain    | 
+ incolor    | integer               |           | plain    | 
+ studioname | character varying(20) |           | extended | 
+ producerc  | integer               |           | plain    | 
+Indexes:
+    "movie_pkey" PRIMARY KEY, btree (title, year)
+Referenced by:
+    TABLE ""StarsIn"" CONSTRAINT "StarsIn_movietitle_fkey" FOREIGN KEY (movietitle, movieyear) REFERENCES movie(title, year) ON DELETE CASCADE
+Has OIDs: no
+
+csc343h-c5zhanii=> alter table movie
+csc343h-c5zhanii-> add foreign key (producerc) references "MovieExec"(certn) ON DELETE SET NULL;
+ALTER TABLE
+csc343h-c5zhanii=> \d+ movie;
+                          Table "movies.movie"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ title      | character varying(30) | not null  | extended | 
+ year       | integer               | not null  | plain    | 
+ length     | integer               |           | plain    | 
+ incolor    | integer               |           | plain    | 
+ studioname | character varying(20) |           | extended | 
+ producerc  | integer               |           | plain    | 
+Indexes:
+    "movie_pkey" PRIMARY KEY, btree (title, year)
+Foreign-key constraints:
+    "movie_producerc_fkey" FOREIGN KEY (producerc) REFERENCES "MovieExec"(certn) ON DELETE SET NULL
+Referenced by:
+    TABLE ""StarsIn"" CONSTRAINT "StarsIn_movietitle_fkey" FOREIGN KEY (movietitle, movieyear) REFERENCES movie(title, year) ON DELETE CASCADE
+Has OIDs: no
+
+csc343h-c5zhanii=> \d+ studio
+                         Table "movies.studio"
+  Column   |         Type          | Modifiers | Storage  | Description 
+-----------+-----------------------+-----------+----------+-------------
+ name      | character varying(30) | not null  | extended | 
+ address   | character varying(30) | not null  | extended | 
+ prescertn | integer               |           | plain    | 
+Indexes:
+    "studio_pkey" PRIMARY KEY, btree (name)
+Has OIDs: no
+
+csc343h-c5zhanii=> aa

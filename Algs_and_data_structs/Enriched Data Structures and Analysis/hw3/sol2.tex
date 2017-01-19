@@ -1,0 +1,67 @@
+\documentclass[a4paper]{article}
+\usepackage{geometry, amsmath, amsthm, latexsym, amssymb, graphicx}
+\usepackage{tikz, tabto}
+\usetikzlibrary{trees}
+\usepackage{listings}
+\lstset{
+ columns=fullflexible,
+ basicstyle=\ttfamily,
+ ,
+ xleftmargin=0.5cm,
+ frame=lr,
+ framesep=8pt,
+ framerule=0pt,
+ escapeinside={(*@}{@*)}
+}
+
+\geometry{margin=1in, headsep=0.25in}
+
+\parindent 0in
+\parskip 12pt
+
+\begin{document}
+
+\title{CSC265 A3}
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE \bf CSC265 Assignment 3}\\
+
+\end{center}
+\textbf{Written by Kaiyang Wen, 1002123891, kai.wen@mail.utoronto.ca }\\
+\textbf{Revised by Mohan Zhang, 1002748716, morgan.zhang@mail.utoronto.ca}\\
+\section{Question 1.}
+a.\\
+The hashing table tooks \\
+
+
+b.\\$|åßƒ©˙∆˚¬…æΩ≈ç√∫˜µ≤≥÷œ∑´®†¥¨ˆøπ“ ||$≤
+Let ADT = create (ADT, $\Delta$) for some ADT and $\Delta$.
+When the program executing line 4, we can surely create an ADT as we've previously specified in part a since there are only 2 elements ($x_1$ and $x_2$) and for that two elements, and $| x_1$ - $x_2 |$ is greater than or equal to $\Delta$ by the definition of $\Delta$.\\
+Claim: after executed line 12, the elements in ADT are from $X_i$ = \{$x_1$, $x_2$, ..., $x_i$\}, and every element in $X_i$ are in ADT. The $\Delta$ for such ADT satisfied all the condition, And cp is the closet pair of points in the set $X_i$. Let cp = (m,n).
+\\Prove by induction:
+\\When i=3( the first loop):\\     
+If p==NIL, we insert $x_3$ into ADT, so the elements in ADT are from $X_3$, and every element in $X_3$ are in ADT. Since p==NIL, so $\forall$ y in $X_2$, $| x_3 - y | \geq \Delta$, so $\forall$ $y_1, y_2$ in $X_3$, $| y_1 - y_2 | \geq \Delta$. \\
+Else, since IsCloser(ADT, $x_3$) = p, then $\forall$ $y_1, y_2$ in $X_2$, $| y_1 - y_2 | > |p- x_3|$. And, since $\Delta = |p- x_3|$, then $\forall$ $y_1, y_2$ in $X_3$, $| y_1 - y_2 | \geq \Delta$. And, cp is the closet pair of points in the set $X_3$ since $\forall$ $y_1, y_2$ in $X_3$, $| y_1 - y_2 | \geq |m-n|$.\\
+\\Assume when i=k, the elements in ADT are from $X_k$, and every element in $X_k$ are in ADT. $\forall$ $y_1, y_2$ in $X_k$, $| y_1 - y_2 | \geq \Delta$ . And for cp, $|m-n| = \Delta$. So, by the assumption, $\forall$ $y_1, y_2$ in $X_k$, $| y_1 - y_2 | \geq |m-n|$, so cp is the closet pair of points in the set $X_k$.
+For i=k+1:\\
+If p==NIL, we insert $x_{k+1}$ into ADT, so from the previous assumption, the elements in ADT are from $X_{k+1}$, and every element in $X_{k+1}$ are in ADT. Since p==NIL, so from the previous assumption, $\forall$ y in $X_{k+1}$, $| x_{k+1} - y | \geq \Delta$, so $\forall$ $y_1, y_2$ in $X_{k+1}$, $| y_1 - y_2 | \geq \Delta$. \\
+Else, since IsCloser(ADT, $x_{k+1}$) = p, then $\forall$ $y_1, y_2$ in $X_{k+1}$, $| y_1 - y_2 | > |p- x_{k+1}|$. And, since $\Delta = |p- x_3|$, then $\forall$ $y_1, y_2$ in $X_{k+1}$, $| y_1 - y_2 | \geq \Delta$. And, cp is the closet pair of points in the set $X_{k+1}$ since $\forall$ $y_1, y_2$ in $X_{k+1}$, $| y_1 - y_2 | \geq |m-n|$.
+\\By induction, the claim is true. So, the algorithm works, and correctly outputs the closest pair of points in X = \{$x_1$, $x_2$, ..., $x_n$\}.\\
+
+
+c.\\
+
+
+
+d.\\
+Among the program, all the operations except line 12 expected runs in constant time (from the definition of the creation, IsCloser and Insert on Y). so, the expected running time of ClosestPair only depends on how many times we execute line 12 for a certain i.
+\section{Question 2.}
+Lemma: Once Alice return 1 on a set T, Bob will finally discover an element of Alice’s set in O(log(size of T)) time, which is O(log(n)) time.
+Proof:
+When Alice return 1 on T, we can find that Using Faith Ellen's algorithm in course lecture $https://www.youtube.com/watch?v=ILa6W3sCQJ4$, which takes O(log(n)) times.
+
+
+
+\end{document}

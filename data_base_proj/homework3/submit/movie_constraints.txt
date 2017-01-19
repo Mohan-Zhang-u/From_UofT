@@ -1,0 +1,76 @@
+                          Table "movies.movie"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ title      | character varying(30) | not null  | extended | 
+ year       | integer               | not null  | plain    | 
+ length     | integer               |           | plain    | 
+ incolor    | integer               |           | plain    | 
+ studioname | character varying(20) |           | extended | 
+ producerc  | integer               |           | plain    | 
+Indexes:
+    "movie_pkey" PRIMARY KEY, btree (title, year)
+Check constraints:
+    "check_bw" CHECK (NOT incolor = 0 OR length <= 90)
+    "check_length1" CHECK (length <= 250)
+    "check_length2" CHECK (length >= 60)
+    "check_year" CHECK (year >= 1915)
+Foreign-key constraints:
+    "movie_producerc_fkey" FOREIGN KEY (producerc) REFERENCES "MovieExec"(certn) ON DELETE SET NULL
+    "movie_studioname_fkey" FOREIGN KEY (studioname) REFERENCES studio(name) ON UPDATE CASCADE
+Referenced by:
+    TABLE ""StarsIn"" CONSTRAINT "StarsIn_movietitle_fkey" FOREIGN KEY (movietitle, movieyear) REFERENCES movie(title, year) ON DELETE CASCADE
+Has OIDs: no
+                        Table "movies.MovieStar"
+  Column   |         Type          | Modifiers | Storage  | Description 
+-----------+-----------------------+-----------+----------+-------------
+ name      | character varying(30) | not null  | extended | 
+ address   | character varying(30) |           | extended | 
+ gender    | character(1)          |           | extended | 
+ birthdate | date                  |           | plain    | 
+Indexes:
+    "MovieStar_pkey" PRIMARY KEY, btree (name)
+Check constraints:
+    "check_bw" CHECK (gender <> 'M'::bpchar OR birthdate >= '1960-01-01'::date)
+Referenced by:
+    TABLE ""StarsIn"" CONSTRAINT "StarsIn_starname_fkey" FOREIGN KEY (starname) REFERENCES "MovieStar"(name) ON DELETE CASCADE
+Has OIDs: no
+                         Table "movies.StarsIn"
+   Column   |         Type          | Modifiers | Storage  | Description 
+------------+-----------------------+-----------+----------+-------------
+ movietitle | character varying(30) | not null  | extended | 
+ movieyear  | integer               | not null  | plain    | 
+ starname   | character varying(30) | not null  | extended | 
+Indexes:
+    "StarsIn_pkey" PRIMARY KEY, btree (movietitle, movieyear, starname)
+Foreign-key constraints:
+    "StarsIn_movietitle_fkey" FOREIGN KEY (movietitle, movieyear) REFERENCES movie(title, year) ON DELETE CASCADE
+    "StarsIn_starname_fkey" FOREIGN KEY (starname) REFERENCES "MovieStar"(name) ON DELETE CASCADE
+Has OIDs: no
+                       Table "movies.MovieExec"
+  Column  |         Type          | Modifiers | Storage  | Description 
+----------+-----------------------+-----------+----------+-------------
+ name     | character varying(30) |           | extended | 
+ address  | character varying(30) |           | extended | 
+ certn    | integer               | not null  | plain    | 
+ networth | integer               |           | plain    | 
+Indexes:
+    "MovieExec_pkey" PRIMARY KEY, btree (certn)
+Referenced by:
+    TABLE "movie" CONSTRAINT "movie_producerc_fkey" FOREIGN KEY (producerc) REFERENCES "MovieExec"(certn) ON DELETE SET NULL
+    TABLE "studio" CONSTRAINT "studio_prescertn_fkey" FOREIGN KEY (prescertn) REFERENCES "MovieExec"(certn)
+Has OIDs: no
+                         Table "movies.studio"
+  Column   |         Type          | Modifiers | Storage  | Description 
+-----------+-----------------------+-----------+----------+-------------
+ name      | character varying(30) | not null  | extended | 
+ address   | character varying(30) |           | extended | 
+ prescertn | integer               |           | plain    | 
+Indexes:
+    "studio_pkey" PRIMARY KEY, btree (name)
+Check constraints:
+    "check_stuname" CHECK (name::text ~~ 'Disney'::text OR name::text ~~ 'Fox'::text OR name::text ~~ 'MGM'::text OR name::text ~~ 'Paramount'::text)
+Foreign-key constraints:
+    "studio_prescertn_fkey" FOREIGN KEY (prescertn) REFERENCES "MovieExec"(certn)
+Referenced by:
+    TABLE "movie" CONSTRAINT "movie_studioname_fkey" FOREIGN KEY (studioname) REFERENCES studio(name) ON UPDATE CASCADE
+Has OIDs: no

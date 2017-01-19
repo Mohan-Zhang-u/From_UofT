@@ -1,0 +1,244 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage{geometry, amsmath, amsthm, latexsym, amssymb, graphicx} % Math, and margin stuff
+\usepackage{scrextend} % indentation stuff
+\usepackage{listings} % Package for code display
+\lstset{
+ columns=fullflexible,
+ basicstyle=\ttfamily,
+ escapeinside={(*@}{@*)},
+ breaklines=true
+}
+\usepackage{fontspec} % font stuff
+\geometry{margin=1in}
+\title{CSC265 A5}
+
+\begin{document}
+\begin{center}
+{\LARGE \bf CSC265 Assignment 5}\\
+\end{center}
+\textbf{Written by Kaiyang Wen, 1002123891, kai.wen@mail.utoronto.ca }\\
+\textbf{Revised by Mohan Zhang, 1002748716, morgan.zhang@mail.utoronto.ca }\\\\
+%Question 1. %Question 1. %Question 1. %Question 1.
+%Question 1. %Question 1. %Question 1. %Question 1.
+%Question 1. %Question 1. %Question 1. %Question 1.
+%Question 1. %Question 1. %Question 1. %Question 1.
+{\noindent\large\textbf{Question 1.}}
+
+{\setmainfont{Arial}
+In order to make use of the given potential function, we must have some relative definition on the nodes.
+
+\noindent\textbf{(definition)} Let $r$ be the root of a forest, and call $N = w(r)$. For all node $x$ inside the forest with, consider $x$ to be \textit{light} when $w(x) \le \frac{1}{2} N$, and consider $x$ to be \textit{heavy} otherwise. By default $r$ is heavy.
+
+With this setting, we can make some claim on the light and heavy nodes.
+
+{\noindent\textbf{(claim)} 
+The number of light nodes on the shortest path from $x$ to $r$ does not exceed $log N$.
+}
+% ----- BEGIN PROOF
+\begin{proof}
+Suppose it will for contradiction. By definition, since we have $2w(x) \le w(r)$, and by assumption it follows directly that $2^{(log N)+1}w(x) \le w(r)$.
+
+Assume $w(x)$ has the smallest value $1$. Then we will obtain $2^{(log N)+1} \le w(r) \Rightarrow 2N \le w(r)$. This is a contradiction.
+\end{proof}
+% ----- END PROOF
+
+{\noindent\textbf{(claim)} 
+Let $S$ denotes the forest rooted at r. For the FindSet operation, $d\Phi(S) \ge v - 1$, where v represents the number of heavy nodes inside S.
+}
+% ----- BEGIN PROOF
+\begin{proof}
+Let $X$ be a heavy node. Notice that if $X$ is heavy, then the parent of $X$ must be heavy as well, since a parent node cannot have a greater size than its child. 
+
+When we perform FindSet(X), we are going to make the parent pointer of all nodes on the shortest path from $X$ to $r$ pointing to $r$. Notice that by definition $2w(X) > w(r)$, so each time we change the pointer, $log w(X)$ decreases by at least one.
+
+Also notice that the pointer will not be changed if X is already a child of X. This proves the claim.
+\end{proof}
+% ----- END PROOF
+
+Define the actual cost for FindSet(x) on some node $x$ to be $u + v$, where u denotes the number of heavy nodes and v denotes the number of light nodes on the shortest path from $x$ to $r$.
+
+Using the potential method, we can clearly see that the amortized cost for FindSet is in $O(log N)$:
+
+$u + v - d\Phi(S)$ $ \le log N + v + - (v - 1) $ $ = log N + 1$.
+
+For the Union operation, it is trivial to do an analysis since it is just a composition of FindSet and Link. The potential will increase when the node-representation of a forest (the root node) Links to other node (this is a constant time operation). Therefore, Union has amortized complexity $O(log N)$, where N denotes the size of the ``querying" set.
+
+Since we are starting from $n$ singleton sets, the largest possible forest has size $n$. It follows that the amortized complexity of FindSet and Union is $O(log n)$.
+
+}
+~\\\\
+%Question 2. %Question 2. %Question 2. %Question 2.
+%Question 2. %Question 2. %Question 2. %Question 2.
+%Question 2. %Question 2. %Question 2. %Question 2.
+%Question 2. %Question 2. %Question 2. %Question 2.
+{\noindent\large\textbf{Question 2.}}
+
+{\setmainfont{Arial}
+
+For this question, we use the following convention:\\
+Let i,j be two vertices.\\
+$d(i,j)$ maps to the distance in the original graph.\\
+$\delta(i,j)$ maps to the distance in the squared graph.\\
+
+{\noindent\large\it(part a)}
+
+{\setmainfont{Times New Roman}
+Call the algorithm 
+%here I added a algorithm:
+\begin{lstlisting}
+Data structure used:
+Init:
+    for 
+\end{lstlisting}
+
+(step 1) Perform a BFS on the first vertex to obtain a BFS-tree.
+
+(step 2) For the $i^{th}$ row: fill in 0 for the $i^{th}$ entry, fill in the distances inside the BFS-tree to the corresponding entry, and fill in infinity to the corresponding row for those vertices being not in the BFS tree.
+
+(step 3) Do step 1 for the next vertex. Keep doing so until all vertices are searched so the distance matrix will be fully filled.
+}
+
+\begin{proof}
+Correctness.
+
+(partial correctness)
+
+Each row on the matrix depends on the distances (the augmented $d$ variable) on the BFS-tree. In lecture, we have proven that this variable of a vertex is the shortest distance from the root node of the BFS-tree. Notice that a graph may not be connected. In this case, the vertices in such disconnected part will not be in the BFS-tree. So, the not-connected part has infinity distance to a querying vertex. Therefore, the output of each row is correct.
+
+Since this algorithm iterates all vertices, then the output has partial correctness.
+
+(termination - time complexity)
+
+The time complexity of this algorithm depends on the BFS. Each time we set-up a BFS, we need to initialize all vertices. This part of the BFS has time complexity proportional to n.
+
+Each time we perform a BFS, only the connected vertices will be added to the next depth of the current BFS-tree. Since the BFS algorithm needs to discover all nodes, then the time complexity will be proportional to m, the number of connected edges.
+
+Since we are performing BFS on all vertices, the result follow that the compute-distance algorithm runs in:
+
+$O(n (n + m) ) = O(n^{2} + mn).$
+\end{proof}
+
+{\noindent\large\it(part b)}
+
+\noindent\textbf{(definition)} For all vertices $i,j$, for all edges $e = (i,j)$ on the squared graph, consider $e$ to be light when $\delta(i,j) = 1$ on the original graph, and consider $e$ to be heavy otherwise. 
+
+{\noindent\textbf{(claim)} 
+$ d[i,j] = D [i,j] = 2( D_{sq} [i,j] ) - P [i,j]$ is an invariant.
+}
+% ----- BEGIN PROOF
+\begin{proof}
+Notice that there's an edge between vertices $i,j$ in the squared graph iff $\delta(i,j) \le 2$ in the original graph. Since the distance between the vertices of two graph is the shortest number of edges, then for the distance $D_{sq} [i,j]$ between two vertices $i$ and $j$ with $i \ne j$, there will be at most 1 light edge on the shortest path connecting them. 
+
+The proof of the above statement is straightforward: suppose for contradiction that there're more than one light edges on the shortest path. Consider there're two light edges in the shortest path. 
+
+If these two light edges are connected, say, from vertices $a$ to $b$ and from $b$ to $c$, then by definition, $d(a,c) = 2$, which means the path is not the shortest. 
+
+If these two edges are not connected, since in the squared graph any connected nodes will satisfy $\delta(i,j) \le 2$, then for vertices $a,b,c$ with light $(a,b)$ and heavy $(b,c)$ on the squared graph, there must exist vertex $v$ satisfying $\delta(b,v) = 1$ and $\delta(v,c) = 1$. With such $v$, we obtain heavy $(a,v)$ and light $(v,c)$. Notice that $d(a,c)$ remains unchanged. Using this property, we can ``shuffle" all the light edges to make them connected, so this will eventually lead to a contradiction.
+
+So there will be at most 1 light edge on the shortest path connecting them. The intuition is that $P [i,j]$ is an indicator of whether a light edge exists on the squared graph. The proof of this statement is also straightforward: for all vertices $i,j$, if $\delta(i,j)$ is even, then $P [i,j] = 0$ and all edges on the squared graph are heavy, so there will be no light edge; otherwise when $\delta(i,j)$ is odd, then $P [i,j] = 1$ and there exists an odd number of light edges. By the previous statement, such an odd number can only be 1.
+
+Put everything together, we obtain $D [i,j] = 2( D_{sq} [i,j] ) - P [i,j]$. This finishes the proof.
+
+\end{proof}
+% ----- END PROOF
+
+{\noindent\large\it(part c)}
+
+\lipsum[1]
+
+{\noindent\large\it(part d)}
+
+\noindent\textbf{(definition)} For all adjacent matrices, define $A_i$ to be the adjacent matrix of $G^{i}$. For example, $A_1$ maps to $G^1$, $A_2$ maps to $G^2$, $A_4$ maps to $G^{4}$, etc... define $D_i , D_{sq'i}, P_i, T_i$ similarly with respect to $A_i$.
+
+{\noindent\textbf{(claim)} 
+For $i \ge n, A_i = D_i$.
+}
+\begin{proof}
+Since the power $i$ of graph $G$ is greater than the number of vertices, then all connected vertices (in the original graph) will form edges, and all other disconnected vertices will not form an edge. By this fact, the distance of every two vertices is either 1 or undefined.
+\end{proof}
+
+{\setmainfont{Times New Roman}
+Before we even start, we need to setup an external global variable \textbf{curr_pow}. This value is initialized to \textbf{1} everytime we run the algorithm. 
+
+We also need to store the number of vertices (the size of $V$ for $G = (V,E)$) into an external global variable \textbf{n}. After these setups, run the following recursive function ComputeD_ex. The returned matrix will be the distance matrix of G.
+
+\begin{lstlisting}
+    ; Here's another implementation for ComputeD, which takes the adjacent matrix 
+    ; of the original graph as input.
+    ComputeD_ex(A):
+    IF curr_pow >= n
+        RETURN A
+    ELSE
+        curr_pow = 2 * curr_pow
+        A_sq := Square(A)
+        D_sq := ComputeD_ex(A_sq)   ; recursive call
+        T := ComputeT(D_sq, A)
+        P := ComputeP(D_sq, T)
+        LET D BE AN n BY n MATRIX
+        FOR i IN 1...n
+            FOR j IN 1...n
+                IF D[i,j] IS DEFINED
+                    D[i,j] := 2 * D_sq[i,j] - P[i,j]
+                ELSE
+                    D[i,j] := UNDEFINED
+                ENDIF
+            ENDFOR
+        ENDFOR
+        RETURN D
+    ENDIF
+\end{lstlisting}
+}
+\begin{proof}
+Correctness.
+
+(partial correctness, by "reversed induction" on $k$)
+
+(induction hypothesis) \textit{For $i = 2^{j}$ for some natural number j such that $i \ge n$ and $\frac{i}{2} < n$, ComputeD_ex($A_k$) computes $D_k$ correctly, where $k = 1, 2, 4, 8, ..., i$.}
+
+Notice that $k$ denotes the $curr_pow$ variable inside the function. Our goal is to show that the induction hypothesis holds when $k = 1$. 
+
+(base case)
+
+When $k = i$, $A_k = D_k$ by the above claim. The return statement inside the if-block does the correct job.
+
+(induction step)
+
+Assume ComputeD_ex($A_k$) works correctly. Now, we want to show that ComputeD_ex($A_{\frac{k}{2}}$) works correctly as well. Notice that $k = 2^{l}$ for some natural number $l$, so $\frac{k}{2}$ will always be an integer when $k$ is in the correct range.
+
+Notice that when $\frac{k}{2} < i$, the if-test on the first line of the function will fail, the program will be in the else block. Since we are going to make a recursive call to compute $D_k$, we times the $curr_pow$ variable by 2 so ComputeD_ex($A_k$) will behave correctly. After we do Square($A_{\frac{k}{2}}$), we will get $A_k$ so ComputeD_ex($A_k$) will have the correct input.
+
+By induction hypothesis, we will obtain $D_k$ when the recursive call returns. At this point, we compute $T_{\frac{k}{2}}$ and $P_{\frac{k}{2}}$ accordingly. By the invariant shown in part (b):
+
+$D [i,j] = 2( D_{sq} [i,j] ) - P [i,j]$
+
+We can then compute $D_{\frac{k}{2}}$ with everything we have up to now.
+
+By "reversed induction", ComputeD_ex($A_1$) can compute $D_1$ correctly.
+
+(termination - complexity)
+
+Notice that inside each recursive call, Square and ComputeT runs in $O(n^{\omega})$, ComputeP is also bounded by $O(n^{\omega})$ since it runs in $O(n^{2})$. The nested for-loop inside the else block is also bounded by $O(n^{\omega})$ since we are only doing constant-time operations in the body of it. The remaining factor of the time complexity only depends on the number of recursive calls. Since each time we are multiplying the $curr_pow$ by 2, then it is very obvious that the number of recursive calls equals $log_2 i$ ($i$ is defined as in the induction hypothesis). Since $i$ equals $n + c$ for some constant $c$, then the number of recursive call is bounded by $O(log n)$. 
+
+Therefore, the time complexity of this algorithm is $O(n^{\omega}log n)$.
+\end{proof}
+
+}
+~\\\\
+\end{document}
+%
+%
+%
+%
+%
+% {\noindent\textbf{(claim)} 
+%
+% }
+% % ----- BEGIN PROOF
+% \begin{proof}
+%
+% \end{proof}
+% % ----- END PROOF
+%

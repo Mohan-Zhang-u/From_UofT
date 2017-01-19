@@ -1,0 +1,20 @@
+Class name: Ls
+Parent class: Command
+Subclasses: none
+Responsibilities:
+*Print the all file and directory names in the current directory
+*ls can show different things depending on the parameters that are added
+*can determine if the file exist or not
+*shown information about the file, 
+and information of all files in date order or reversed in order
+*show all files ending in .txt
+*can list all files include the hidden files
+*determine whether the provided directory is exist or not
+*show files also in sub-directories of directory
+*show all the sub-directories
+*list the content of the current directory
+*show one file per line
+Collaborators:
+*FileSystem
+*Directory
+*File

@@ -1,0 +1,15 @@
+Class name: Cp
+Parent class: Command, Mv
+Subclasses: none
+Responsibilities:
+*Copy file from one path to another path, 
+the paths may be relative or full path to the current directory
+*copy file(s) to another directory
+*copy one file to another file
+*copy one directory to another directory
+include its sub-directories (i.g. copy dir1 and its sub-directories to dir2)
+*Provide an error if either the file name or directory path is invalid
+Collaborators:
+*FileSystem
+*Directory
+*File

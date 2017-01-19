@@ -1,0 +1,124 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u5/c5/04/c5zhubih/csc258/lab2/part3
+valu
+Z1 !s110 1465253490
+!i10b 1
+!s100 T8Q`3^@98ieZOZ9:jFRU90
+I<Bc_4:Xh592kNzzgi4RKD0
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+Z3 d//SRVC/Homes$$/zhubiha1/Desktop/lab2/part3
+Z4 w1465251702
+Z5 8lab2part3.v
+Z6 Flab2part3.v
+L0 40
+Z7 OV;L;10.3d;59
+r1
+!s85 0
+31
+Z8 !s108 1465253490.009000
+Z9 !s107 lab2part3.v|
+Z10 !s90 -reportprogress|300|lab2part3.v|
+!i113 1
+vfour_bit_full_adder
+R1
+!i10b 1
+!s100 aMUAU:F87]3Vmk90D7?=I3
+I?4S<MVg_hk_ZT9Y_`]mFb3
+R2
+R3
+R4
+R5
+R6
+L0 95
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+vfull_adder
+R1
+!i10b 1
+!s100 K6;1MKmIVeDcY@zm;c0oD1
+I7Y_:3AD0nYWfl7cf8E8EU1
+R2
+R3
+R4
+R5
+R6
+L0 108
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+vhex
+R1
+!i10b 1
+!s100 @Ne88CEYW7YfN?Kje_>0N2
+ISf5m_gjCQ>2013?kEjmQf3
+R2
+R3
+R4
+R5
+R6
+L0 80
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+vlab2part3
+R1
+!i10b 1
+!s100 z@P9FFYB;RYWicTJHa6ac0
+I=2c^SYRM1@cQcZf<_VgjR3
+R2
+R3
+R4
+R5
+R6
+L0 3
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+vpart3
+!s110 1465242736
+!i10b 1
+!s100 R7kR9Tlz3Yh7MX[n4zZ7Q2
+IBJg:N^6HH_mAhP@:F0LdQ0
+R2
+R0
+w1465242713
+R5
+R6
+L0 1
+R7
+r1
+!s85 0
+31
+!s108 1465242736.545793
+R9
+R10
+!i113 1

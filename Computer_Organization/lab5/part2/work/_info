@@ -1,0 +1,105 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d//SRVC/Homes$$/zhubiha1/Desktop/lab5/part2
+vcontrol
+Z1 !s110 1467672963
+!i10b 1
+!s100 Ec^Jzdeofl6`jO:zDBE6?1
+IPA1FTB]MkcdY8Q@kPHb_80
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+R0
+Z3 w1467671589
+Z4 8lab5part2.v
+Z5 Flab5part2.v
+L0 99
+Z6 OV;L;10.3d;59
+r1
+!s85 0
+31
+Z7 !s108 1467672963.927000
+Z8 !s107 lab5part2.v|
+Z9 !s90 -reportprogress|300|lab5part2.v|
+!i113 1
+vdatapath
+R1
+!i10b 1
+!s100 Z8]MTTANV`VF4<L:nS?ni2
+I8X`=DjR_[fSMzZ`6kYWMk1
+R2
+R0
+R3
+R4
+R5
+L0 212
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+vhex_decoder
+R1
+!i10b 1
+!s100 aE>aInkGnoKiAa11kdk@;2
+IY8iKR8YOf;S[Ilh@V`5;;3
+R2
+R0
+R3
+R4
+R5
+L0 309
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+vlab5part2
+R1
+!i10b 1
+!s100 Ch:JJPDeQYlS8MVj_Y<Oo1
+IBTCb[Qhh@Q:8eHZJF?0<m0
+R2
+R0
+R3
+R4
+R5
+L0 9
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+vpart2
+R1
+!i10b 1
+!s100 R9VWiN;B]m8_N:kHUgA[61
+II9`:h?DAM;2c_Z_dLBkmz2
+R2
+R0
+R3
+R4
+R5
+L0 45
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1

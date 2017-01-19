@@ -1,0 +1,62 @@
+//the adder circuit
+
+module top (LEDR, SW);
+	
+	output [9:0] LEDR;
+	input [8:0] SW;
+	
+	wire c0, c1, c2;
+	
+	full_adder fa0(
+				.a(SW[4]),
+				.b(SW[0]),
+				.cin(SW[8]),
+				.sum(LEDR[0])
+				.cout(c0)
+				);
+
+	
+	full_adder fa1(
+				.a(SW[5]),
+				.b(SW[1]),
+				.cin(c0),
+				.sum(LEDR[1])
+				.cout(c1)
+				);
+				
+	full_adder fa2(
+				.a(SW[6]),
+				.b(SW[2]),
+				.cin(c1),
+				.sum(LEDR[2])
+				.cout(c2)
+				);
+	
+	full_adder fa3(
+				.a(SW[7]),
+				.b(SW[3]),
+				.cin(c2),
+				.sum(LEDR[3])
+				.cout(LEDR[9])
+				);
+
+endmodule 
+
+
+
+
+module full_adder (a,b,cin,sum,cout);
+	
+	input a; 
+	input b; 
+	input cin;
+	output sum; 
+	output cout;
+	
+	
+	//assign sum =  (~a & ~b & cin) | (~a & b & ~cin) | (a & ~b & ~cin) | (a & b & cin);
+	assign sum = a ^ b ^ cin;
+	//assign cout = (a & ~b & cin) | (~a & b & cin) | (a & b & ~cin) | (a & b & cin);
+	assign cout = (a & b) | (a & cin) | (b & cin);
+	
+endmodule 

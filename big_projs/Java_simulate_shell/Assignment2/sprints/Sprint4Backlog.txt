@@ -1,0 +1,40 @@
+SpintBacklog
+Febrary 29 to March 7
+
+User Stories from Product Backlog that we will address in the spint:
+
+a)(ls)
+As a user, I want to list all my sub-direcories, 
+
+b)(MV)
+As a user, I want to move file from old path to new path
+
+c)(CP)
+As a user, I want to copy file from old path to new path.
+
+d)(cat)
+As a user, I want to display many files' content by using only 1 command
+
+e)(getURL)
+As a user, I want to download files from the given web address
+
+f)(!number)
+As a user, I want to recall the commands 
+that I have executed by the order which is associated with history class
+
+g)(grep)
+As a user, I want to find the line 
+that has specific characteristic in the file or all files in directories.
+
+Specific tasks to be accomplished:
+
+a-1 (ls) list all subdirectories under the current directory
+b-1 (mv) Move files from oldpath to newpath
+c-1 (cp) copy files from oldpath to newpath
+d-1 (cat) enable users to input several filenames after cat and display the 
+          content of them
+e-1 (getURL) downloading file from the given URL
+f-1 (!number) recall the commands that user has excuted by the number 
+              which is stored in history class
+g-1 (grep) print the lines containing REGEX in the file if the path is file. 
+	   print all lines containing REGEX in all files in the given directory.

@@ -1,0 +1,29 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d//SRVC/Homes$$/zhubiha1/Desktop/lab6/part2/vga_adapter
+vvga_controller
+!s110 1468279452
+!i10b 1
+!s100 nb2Bg<]ghL<OJnljOcKVU2
+IAD_<1cfDN_f@iP7jE2fIi0
+V`JN@9S9cnhjKRR_L]QIcM3
+R0
+w1468275303
+8vga_controller.v
+Fvga_controller.v
+L0 9
+OV;L;10.3d;59
+r1
+!s85 0
+31
+!s108 1468279452.199000
+!s107 vga_controller.v|
+!s90 -reportprogress|300|vga_controller.v|
+!i113 1

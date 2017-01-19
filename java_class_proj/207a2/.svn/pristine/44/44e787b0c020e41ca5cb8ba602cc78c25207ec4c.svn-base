@@ -1,0 +1,10 @@
+Class name: Get
+Parent class: Command
+Subclasses: none
+Responsibilities:
+*Download file from address provided and save it in current directory
+*Provide an error if the URL is invalid
+Collaborators:
+*FileSystem
+*Directory
+*File

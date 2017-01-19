@@ -1,0 +1,286 @@
+|lab3part3
+SW[0] => SW[0].IN1
+SW[1] => SW[1].IN1
+SW[2] => SW[2].IN1
+SW[3] => SW[3].IN1
+SW[4] => SW[4].IN1
+SW[5] => SW[5].IN1
+SW[6] => SW[6].IN1
+SW[7] => SW[7].IN1
+SW[8] => ~NO_FANOUT~
+SW[9] => SW[9].IN8
+LEDR[0] <= three_end:te2.o2
+LEDR[1] <= four_end:fe1.o2
+LEDR[2] <= four_end:fe2.o2
+LEDR[3] <= four_end:fe3.o2
+LEDR[4] <= four_end:fe4.o2
+LEDR[5] <= four_end:fe5.o2
+LEDR[6] <= four_end:fe6.o2
+LEDR[7] <= four_end:fe7.o2
+KEY[0] => KEY[0].IN8
+KEY[1] => KEY[1].IN8
+KEY[2] => KEY[2].IN8
+KEY[3] => comb.IN1
+
+
+|lab3part3|mux2to1:M71
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M72
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|flipflop:F7
+reset => LEDDR~reg0.ACLR
+clock => LEDDR~reg0.CLK
+D => LEDDR~reg0.DATAIN
+LEDDR <= LEDDR~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|four_end:fe7
+i => o3.DATAIN
+i => o1.DATAIN
+i => o2.DATAIN
+o1 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o2 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o3 <= i.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|three_end:te7
+i => o2.DATAIN
+i => o1.DATAIN
+o1 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o2 <= i.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M61
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M62
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|flipflop:F6
+reset => LEDDR~reg0.ACLR
+clock => LEDDR~reg0.CLK
+D => LEDDR~reg0.DATAIN
+LEDDR <= LEDDR~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|four_end:fe6
+i => o3.DATAIN
+i => o1.DATAIN
+i => o2.DATAIN
+o1 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o2 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o3 <= i.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M51
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M52
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|flipflop:F5
+reset => LEDDR~reg0.ACLR
+clock => LEDDR~reg0.CLK
+D => LEDDR~reg0.DATAIN
+LEDDR <= LEDDR~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|four_end:fe5
+i => o3.DATAIN
+i => o1.DATAIN
+i => o2.DATAIN
+o1 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o2 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o3 <= i.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M41
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M42
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|flipflop:F4
+reset => LEDDR~reg0.ACLR
+clock => LEDDR~reg0.CLK
+D => LEDDR~reg0.DATAIN
+LEDDR <= LEDDR~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|four_end:fe4
+i => o3.DATAIN
+i => o1.DATAIN
+i => o2.DATAIN
+o1 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o2 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o3 <= i.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M31
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M32
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|flipflop:F3
+reset => LEDDR~reg0.ACLR
+clock => LEDDR~reg0.CLK
+D => LEDDR~reg0.DATAIN
+LEDDR <= LEDDR~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|four_end:fe3
+i => o3.DATAIN
+i => o1.DATAIN
+i => o2.DATAIN
+o1 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o2 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o3 <= i.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M21
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M22
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|flipflop:F2
+reset => LEDDR~reg0.ACLR
+clock => LEDDR~reg0.CLK
+D => LEDDR~reg0.DATAIN
+LEDDR <= LEDDR~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|four_end:fe2
+i => o3.DATAIN
+i => o1.DATAIN
+i => o2.DATAIN
+o1 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o2 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o3 <= i.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M11
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M12
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|flipflop:F1
+reset => LEDDR~reg0.ACLR
+clock => LEDDR~reg0.CLK
+D => LEDDR~reg0.DATAIN
+LEDDR <= LEDDR~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|four_end:fe1
+i => o3.DATAIN
+i => o1.DATAIN
+i => o2.DATAIN
+o1 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o2 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o3 <= i.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M01
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|mux2to1:M02
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|flipflop:F0
+reset => LEDDR~reg0.ACLR
+clock => LEDDR~reg0.CLK
+D => LEDDR~reg0.DATAIN
+LEDDR <= LEDDR~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3part3|three_end:te2
+i => o2.DATAIN
+i => o1.DATAIN
+o1 <= i.DB_MAX_OUTPUT_PORT_TYPE
+o2 <= i.DB_MAX_OUTPUT_PORT_TYPE
+
+

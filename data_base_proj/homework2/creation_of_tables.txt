@@ -1,0 +1,47 @@
+DROP TABLE IF EXISTS PharmaceuticalCompanies;DROP TABLE IF EXISTS Drugs;
+DROP TABLE IF EXISTS Pharmacy;
+DROP TABLE IF EXISTS Doctor;
+DROP TABLE IF EXISTS Prescriptions;
+DROP TABLE IF EXISTS Patient;
+DROP TABLE IF EXISTS Drug_In_Prescriptions;
+DROP TABLE IF EXISTS Drug_Sold_In_Pharmacy;CREATE TABLE PharmaceuticalCompanies (name VARCHAR(20) PRIMARY KEY,
+phone_number VARCHAR(20));
+CREATE TABLE Drugs (
+PharmaceuticalCompanies VARCHAR(20),
+trade_name VARCHAR(20),
+formula VARCHAR(20),
+PRIMARY KEY (PharmaceuticalCompanies,trade_name));
+CREATE TABLE Pharmacy (name VARCHAR(20),
+address VARCHAR(50),
+phone_number VARCHAR(20),
+PRIMARY KEY (name,address));
+CREATE TABLE Doctor (doctor_id VARCHAR(20) PRIMARY KEY,
+name VARCHAR(20),
+specialty VARCHAR(20),
+years_of_experience VARCHAR(20));
+CREATE TABLE Prescriptions (prescription_id VARCHAR(20) PRIMARY KEY,
+date VARCHAR(20),
+doctor_id VARCHAR(20),
+patient_id VARCHAR(20));
+CREATE TABLE Patient (
+healthcare_number VARCHAR(20) PRIMARY KEY,
+name VARCHAR(20),
+address VARCHAR(50),
+age CHAR(4),
+prime_doc_id VARCHAR(20)
+);
+CREATE TABLE Drug_In_Prescriptions (
+PharmaceuticalCompanies_name VARCHAR(20),
+trade_name VARCHAR(20),
+prescriptions_id VARCHAR(20),
+quantity CHAR(20),
+PRIMARY KEY (PharmaceuticalCompanies_name,trade_name,prescriptions_id)
+);
+CREATE TABLE Drug_Sold_In_Pharmacy (
+PharmaceuticalCompanies_name VARCHAR(20),
+trade_name VARCHAR(20),
+pharmacy_name VARCHAR(20),
+pharmacy_address VARCHAR(50),
+price CHAR(20),
+PRIMARY KEY(PharmaceuticalCompanies_name,trade_name,pharmacy_name,pharmacy_address)
+);

@@ -1,0 +1,2 @@
+PharmaceuticalCompanies(name,phone_number)
+Drugs(trade_name,formula)

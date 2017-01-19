@@ -1,0 +1,14 @@
+Class name: File
+Parent Class: FileSystem
+Subclasses: none
+Responsibilities:
+*Holds file information
+*Can be modified
+*Can be accessed
+*can be moved to an other directory
+*create or fill or append text to a file
+Collaborators:
+*Directory (the directory that contains the file)
+
+
+ 

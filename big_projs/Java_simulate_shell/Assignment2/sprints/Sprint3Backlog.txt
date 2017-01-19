@@ -1,0 +1,65 @@
+Sprint3Backlog
+February 29 to March 7
+
+User Stories from Product Backlog that we will address in this sprint:
+
+a)
+As a user, I want to save my current working directory, so that I can change 
+back to it at any time.
+
+b)
+As a user, I want to change my current directory to the directory that I last 
+saved in.
+
+c)
+As a user, I want to check a certain amount of my history commands.
+
+d)
+As a user, I want to display the content of a file and/or with other files
+to the screen.
+
+e)
+As a user, I want to append or overwrite a file.
+
+f)
+As a user, I want to check the definitions of all the commands. 
+
+
+Specific tasks to be accomplished:
+
+a-1.(pushd) create a directory stack
+a-2.(pushd) save the current working directory by pushing onto directory stack
+a-3.(pushd) changes the new current working directory to DIR
+b-1.(popd) removes the top most directory from the directory stack
+b-2.(popd) make it the current directory
+c-1.(history) print out recent commands
+c-2.(history) able to truncate the output 
+              by specifying a number (>=0) after the command
+d-1.(cat) display the contents of one file and other files 
+		  concatenated in the shell
+e-1.(echo) if file name is not provided, print the strings on the shell
+e-2.(echo) if file name proved, overwrite or append the strings to that file
+f-1.(man) print the definition of the command that provided
+
+
+
+These tasks are assigned as follows:
+
+User: Xiao Xia Bian
+Tasks: c-1, c-2, f-1
+
+User: Paul LoBuglio
+Tasks: 
+
+User: Mohan Zhang
+Tasks: 
+
+User: Yifei Ai
+Tasks: d-1 e-1 e-2
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+Class name: Echo
+Parent class: Command
+Subclasses: none
+Responsibilities:
+*input strings and display it as an output
+*put String (a string of characters surrounded by quotation marks) in a file, 
+follow by '>'.
+	-If the file does not exist, create one.
+	-If the file does exist, 
+	 overwrite all the contents in that file with String.
+*after the string argument, by enter '>>', either if file does exist or not, 
+append the String into the file. 
+*Provide an error if the argument is not in string form
+followed by a valid File location to set the file location 
+Collaborators:
+*FileSystem
+*Directory
+*File

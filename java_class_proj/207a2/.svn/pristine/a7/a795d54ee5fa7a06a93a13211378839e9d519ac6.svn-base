@@ -1,0 +1,10 @@
+What did I do last time?
+    - I've implemented and documented Command, File, and Directory. I breifly worked on implementing FileSystem, though it is not documented.
+
+What do I plan to do now?
+    - Help make skelleton for all Command classes, allow for JShell to function
+    - Finish and test the FileSystem
+    - Work on all assigned Commands I will be given in sprint2
+
+Am I blocked on anything?
+    - Not really.

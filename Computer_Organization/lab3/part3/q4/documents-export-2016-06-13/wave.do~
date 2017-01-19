@@ -1,0 +1,90 @@
+# Set the working dir, where all compiled Verilog goes.
+vlib work
+
+# Compile all verilog modules in mux.v to working dir;
+# could also have multiple verilog files.
+vlog Shifter8Bit.v
+
+# Load simulation using mux4to1 as the top level simulation module.
+vsim top
+
+# Log all signals and add some signals to waveform window.
+log {/*}
+# add wave {/*} would add all items in top level simulation module.
+add wave {/*}
+
+#reset case
+force {load_val[7]} 1
+force {load_val[6]} 1
+force {load_val[5]} 1
+force {load_val[4]} 1
+force {load_val[3]} 1
+force {load_val[2]} 1
+force {load_val[1]} 1 
+force {load_val[0]} 1
+force {load_n} 1 
+force {shift} 1
+force {ASR} 0 
+force {clk} 0 
+force {reset_n} 0 
+run 10 ns
+#reset case
+force {load_val[7]} 1
+force {load_val[6]} 1
+force {load_val[5]} 1
+force {load_val[4]} 1
+force {load_val[3]} 1
+force {load_val[2]} 1
+force {load_val[1]} 1 
+force {load_val[0]} 1
+force {load_n} 1 
+force {shift} 1
+force {ASR} 0 
+force {clk} 1 
+force {reset_n} 0 
+run 10 ns
+#reset case
+force {load_val[7]} 1
+force {load_val[6]} 1
+force {load_val[5]} 1
+force {load_val[4]} 1
+force {load_val[3]} 1
+force {load_val[2]} 1
+force {load_val[1]} 1 
+force {load_val[0]} 1
+force {load_n} 1 
+force {shift} 1
+force {ASR} 0 
+force {clk} 0 
+force {reset_n} 0 
+run 10 ns
+#reset case
+force {load_val[7]} 1
+force {load_val[6]} 1
+force {load_val[5]} 1
+force {load_val[4]} 1
+force {load_val[3]} 1
+force {load_val[2]} 1
+force {load_val[1]} 1 
+force {load_val[0]} 1
+force {load_n} 1 
+force {shift} 1
+force {ASR} 0 
+force {clk} 1 
+force {reset_n} 0 
+run 10 ns
+#reset case
+force {load_val[7]} 1
+force {load_val[6]} 1
+force {load_val[5]} 1
+force {load_val[4]} 1
+force {load_val[3]} 1
+force {load_val[2]} 1
+force {load_val[1]} 1 
+force {load_val[0]} 1
+force {load_n} 1 
+force {shift} 1
+force {ASR} 0  
+force {clk} 0 
+force {reset_n} 0 
+run 10 ns

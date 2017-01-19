@@ -1,0 +1,158 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage{geometry, amsmath, amsthm, latexsym, amssymb, graphicx} % Math, and margin stuff
+\usepackage{scrextend} % indentation stuff
+\usepackage{listings} % Package for code display
+\lstset{
+ columns=fullflexible,
+ basicstyle=\ttfamily,
+ escapeinside={(*@}{@*)},
+ breaklines=true
+}
+\usepackage{fontspec} % font stuff
+\geometry{margin=1in}
+\title{CSC265 A4}
+
+\begin{document}
+\begin{center}
+{\LARGE \bf CSC265 Assignment 4}\\
+\end{center}
+\textbf{Written by Kaiyang Wen, 1002123891, kai.wen@mail.utoronto.ca }\\
+\textbf{Revised by Mohan Zhang, 1002748716, morgan.zhang@mail.utoronto.ca }\\\\
+%Question 1. %Question 1. %Question 1. %Question 1.
+%Question 1. %Question 1. %Question 1. %Question 1.
+%Question 1. %Question 1. %Question 1. %Question 1.
+%Question 1. %Question 1. %Question 1. %Question 1.
+{\noindent\large\textbf{Question 1.}}
+
+{\setmainfont{Arial}
+{\noindent\large\it(part a)}
+
+We are going to perform the following steps in sequence.
+
+{\setmainfont{Times New Roman}
+(step 1) Construct a complete binary tree rooted at \textbf{r}. The keys of the leaves, denoted \textbf{leaf.first.key} are the element in set A; the root of each pair of leaves (aka. height-1 internal node) stores the result of comparison, denote them \textbf{root.first.key} and \textbf{root.second.key} with the former at least the latter. For those roots, define \textbf{root.second.prototype} to be null.
+
+(step 2) For each non-height-1 internal node of the binary tree, the root of each pair of subtrees stores the result of comparison between \textbf{left.first.key} and \textbf{right.first.key} into variables \textbf{root.first.key} and \textbf{root.second.key} with the former at least the latter. 
+
+The pointer to the root \textbf{x} of the subtree with \textbf{x.first.key} equals \textbf{root.first.key} will be stored into \textbf{root.second.versus}.
+
+The pointer to the root \textbf{y} of the subtree with \textbf{y.first.key} equals \textbf{root.second.key} will be stored into \textbf{root.second.prototype}.
+
+These pointers are the auxiliary variables.
+
+After step 2, \textbf{r.first.key} is the maximum of set A. Now we want to find the second maximum.
+
+(step 3) Run FindSecondLargest(r.second). The returned value will be the second maximum.
+\begin{lstlisting}
+        ; A recursive function which finds the second largest.
+        FindSecondLargest(u):
+            if u.prototype is null or u.versus.second.key < u.key:
+                return u.key
+            else:
+                return FindSecondLargest(u.versus.second)
+\end{lstlisting}
+}
+% --- CLAIM AND PROOF-----------------------------------------------------------
+{\it
+(claim) Step 1 through 3 have done $n$ - 2 + $\log_2 n$ comparisons in total.
+}
+\begin{addmargin}[15pt]{0in}
+{
+\textit{proof}
+
+In step 1 and 2, the total number of comparisons equals the number of internal nodes inside the complete binary tree rooted at r. So, there are total of $n$ - 1 comparisons done in step 1, since the number of internal nodes of a complete binary tree equals the number of leaves minus 1. (Do we need to prove this?)
+
+In step 3, I claim that the maximum number of comparisons equals the number of recursive calls to FindSecondLargest. In the worst case scenario, the if-test inside the function fails, and we have to call FindSecondLargest(u) until u.prototype is null, which will happen when u is located inside a height-1 internal node. See the specification in step 1 about those height-1 internal nodes. 
+
+Each recursive call is analogous to "jumping down" one step of the height, so there are total of $(\log_2 n)$ - 1 recursive calls.
+
+Combining all results, we obtain the total number of comparisons equals $n$ - 2 + $\log_2 n.$This finishes the proof.
+}
+\end{addmargin}
+% --- CLAIM AND PROOF - END ----------------------------------------------------
+{\noindent\large\it(part b)}
+
+1.b\\
+M is "First", m is "Second".
+Prove by induction:\\
+Claim:\\
+every algorithm in the comparison model which correctly outputs the indices of the first and second largest element of an array A of size n must make at least f(n)= n − 2 + ⌈$log_2$ n⌉ comparisons in the worst case.\\
+Base case:
+(Just to clarify, when n=1, we don't need to compare.)
+when n=2, the comparison required is 1, and f(n) = 1, satisfied.\\
+when n=3, the comparison required at least 3 comparisons (enumerate [1,3]), and f(n) = 3, satisfied.\\
+when n=4, the comparison required at least 4 comparisons (enumerate [1,4]), and f(n) = 4, satisfied.\\
+Induction hypothesis:
+assume that for n$\leq$k,the claim holds.\\
+For n=k+1,\\
+we now have k+1 elements to pick M and m from. lets first divide those elements into 2 groups, called L and J, each of them contains $n_l$ and $n_j$ elements respectively. The biggest element in L is called $M_l$, and the second biggest element in L is called $m_l$. The biggest element in J is called $M_j$, and the second biggest element in J is called $m_j$. \\ since M and m must come from L or J, there's no difference find $M_l$ and $m_l$,  $M_j$ and $m_j$ first then find M and m by compare them, or directly find M and m.\\
+Case 1: One of L and J contains only one element. Assume without lost of generality that the group is L.\\
+So, find $M_j$ and $m_j$ takes at least f(k)= k − 2 + ⌈$log_2$ k⌉. Then we need to compare 
+$M_j$ and $m_j$ with the only element in L to get M and m. So, in this case f(k+1) $\geq$ f(k)+2=n+⌈$log_2$ n⌉ $\geq$ (n+1)-2+⌈$log_2$ (n+1)⌉, the hypothesis holds.\\
+Case 2: $n_l$, $n_j$ $\geq$ 2 ($n_l$ + $n_j$=k+1). Then by the induction hypothesis, the find $M_l$ and $m_l$,  $M_j$ and $m_j$ takes $n_l$-2 + ⌈$log_2$ $n_l$⌉ + $n_j$ -2 + ⌈$log_2$ $n_j$⌉. And, find M and m in $M_l$ and $m_l$,  $M_j$ and $m_j$ takes at least 4 comparison (from base case). So, f(k+1) = $n_l$-2 + ⌈$log_2$ $n_l$⌉ + $n_j$ -2 + ⌈$log_2$ $n_j$⌉ + 4 = k+1+ ⌈$log_2$ $n_l$⌉+⌈$log_2$ $n_j$⌉ $\geq$ k+1+ ⌈$log_2$ ($n_l$ $\times$ $n_j$)⌉ - 2 = k+1 -2 +  ⌈$log_2$ (k+1)⌉ ,the hypothesis holds.\\
+Then from both case we know the claim holds. So we are done.
+}
+~\\\\
+%Question 2. %Question 2. %Question 2. %Question 2.
+%Question 2. %Question 2. %Question 2. %Question 2.
+%Question 2. %Question 2. %Question 2. %Question 2.
+%Question 2. %Question 2. %Question 2. %Question 2.
+{\noindent\large\textbf{Question 2.}}
+
+{\setmainfont{Arial}
+{\noindent\large\it(part a)}
+
+Assume the swap operation takes constant time. After the first if-block, consider $H_a$ is rooted at r1 and $H_b$ is rooted at r2.
+
+% --- CLAIM AND PROOF---------------------------------------------------------
+{\it
+(invariant) After the first if-block, if r1.left is not null, then the Union call in the else-block runs in \\\indent\indent O($l(H_a)$ + $l(H_b)$ - 1).
+}
+\begin{addmargin}[15pt]{0in}
+{
+\textit{proof (by induction on the height of $H_a$)}
+
+{\noindent (base case)}
+
+When the height of $H_a$ is 1, then we are calling Union(r1.left, r2) in the else-block. Consider r1.left.key is less than every element in the left-most path of $H_b$... then for all recursive calls Union(r1.left, st), where st denotes the root of any subtrees of the left-most path of $H_b$, the test on the first if-test succeeds and the second if-test fails until it reaches a leaf of $H_b$. By definition of $l$, the number of recursion calls equals $l(H_b)$. Thus, in this case the recursive call runs in O($l(H_a)$ + $l(H_b)$ - 1).
+
+For any other cases, at the k'th recursive call, where k $\le l(H_b)$, the first if-test fails and the second if-test succeeds; a corresponding subtree will be connected to r1.left.left. No more operations will be performed afterwards. Therefore, the function still runs in O($l(H_a)$ + $l(H_b)$ - 1).
+
+{\noindent (induction step)}
+
+Assume that $l(H_u)$ equals $l(H_a)$ + 1. Notice that $H_u$ is defined after the frist if-block.
+
+Let the S-Heap $H_v$ be rooted at r1.left, satisfying $l(H_v) = l(H_u) - 1 = l(H_u)$. By induction hypothesis, the sub-recursive call, Union(r1.left.left, r2) or Union(r2.left, r1.left), runs in \\O($l(H_v)$ + $l(H_b)$ - 1) = O($l(H_u)$ + $l(H_b)$ - 2).
+
+Accumulating the recursive call at the else-block during the current call, we obtain that the Union call in the else-block runs in O($l(H_u)$ + $l(H_b)$ - 1).
+}
+\end{addmargin}
+% --- CLAIM AND PROOF - END --------------------------------------------------
+
+Using the invariant and accumulating the current function call, we obtain that Union runs in \\O($l(H_u)$ + $l(H_b)$).
+
+{\noindent\large\it(part b)}
+}
+~\\\\
+\end{document}
+%
+%
+%
+%
+%
+% % --- CLAIM AND PROOF---------------------------------------------------------
+% {\it
+% (claim) Lorem Ipsum.
+% }
+% \begin{addmargin}[15pt]{0in}
+% {
+% \textit{proof}
+%
+% \lipsum[1-3]
+% }
+% \end{addmargin}
+% % --- CLAIM AND PROOF - END --------------------------------------------------
+%

@@ -1,0 +1,13 @@
+vendor_name = ModelSim
+source_file = 1, //SRVC/Homes$/zhubiha1/Desktop/lab1/lab1/show/showpart0.bdf
+source_file = 1, //SRVC/Homes$/zhubiha1/Desktop/lab1/lab1/show/db/showpart0.cbx.xml
+design_name = showpart0
+instance = comp, \m~output\, m~output, showpart0, 1
+instance = comp, \v~input\, v~input, showpart0, 1
+instance = comp, \w~input\, w~input, showpart0, 1
+instance = comp, \x~input\, x~input, showpart0, 1
+instance = comp, \s1~input\, s1~input, showpart0, 1
+instance = comp, \u~input\, u~input, showpart0, 1
+instance = comp, \s0~input\, s0~input, showpart0, 1
+instance = comp, \inst15~0\, inst15~0, showpart0, 1
+instance = comp, \~QUARTUS_CREATED_GND~I\, ~QUARTUS_CREATED_GND~I, showpart0, 1

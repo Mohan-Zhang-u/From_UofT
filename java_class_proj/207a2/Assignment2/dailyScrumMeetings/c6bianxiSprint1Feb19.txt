@@ -1,0 +1,11 @@
+What did I do last time?
+    - finished product backlog and Sprint1
+    - brain storm how to build the 'bone' 
+
+What do I plan to do now?
+    -  write the code
+    
+    
+Am I blocked on anything?
+    - Need to decide how to make the Jshell connect to all classes 
+    so that it can call them when is needed.

@@ -1,0 +1,16 @@
+Class name: Mv
+Parent class: Command
+Subclasses: Cp
+Responsibilities:
+*Move file from one path to another path, 
+both files may be relative to the current directory or may be full paths
+*Provide an error if two valid paths are not provided, 
+or the either one of the path is invalid(ex. path not exist)
+* can rename a file to another name
+*able to move files (by providing file names) to another (valid) directory
+*as it moves the file(s) to the new directory, 
+the old directory does not contain the file(s) anymore
+Collaborators:
+*FileSystem
+*Directory
+*File

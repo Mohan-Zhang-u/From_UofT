@@ -1,0 +1,15 @@
+vendor_name = ModelSim
+source_file = 1, //SRVC/Homes$/zhubiha1/Desktop/lab1/lab1/show000.bdf
+source_file = 1, //SRVC/Homes$/zhubiha1/Desktop/lab1/lab1/output_files/show000.v
+source_file = 1, //SRVC/Homes$/zhubiha1/Desktop/lab1/lab1/Chain5.cdf
+source_file = 1, //SRVC/Homes$/zhubiha1/Desktop/lab1/lab1/db/show000.cbx.xml
+design_name = show000
+instance = comp, \LEDR[0]~output\, LEDR[0]~output, show000, 1
+instance = comp, \SW8~input\, SW8~input, show000, 1
+instance = comp, \SW2~input\, SW2~input, show000, 1
+instance = comp, \SW0~input\, SW0~input, show000, 1
+instance = comp, \SW1~input\, SW1~input, show000, 1
+instance = comp, \SW3~input\, SW3~input, show000, 1
+instance = comp, \SW9~input\, SW9~input, show000, 1
+instance = comp, \inst15~0\, inst15~0, show000, 1
+instance = comp, \~QUARTUS_CREATED_GND~I\, ~QUARTUS_CREATED_GND~I, show000, 1

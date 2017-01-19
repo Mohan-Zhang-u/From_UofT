@@ -1,0 +1,9 @@
+Class name: Command
+Subclasses: Exit, Mkdir, Cd, Ls, Pwd, Cat, Mv, Cp
+Responsibilities:
+*Execute command entered
+*Provide error message if command is entered incorrectly
+*Print out the command entered and any arguments provided
+Collaborators:
+*FileSystem
+*Jshell

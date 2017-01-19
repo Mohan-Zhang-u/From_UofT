@@ -1,0 +1,60 @@
+User Stories 												Time estimate(hour)
+
+1.As a user, I want a shell where                                2
+I can enter commands, have them execute
+
+2.As a user, I can get track of 								 3
+every directory and files that I am working with.
+
+
+3.As a user, I can end the command line, 						 1
+so that to exit the program
+
+4.As a user, I can create a new working directory,				 1
+so that I can work on a new directory.
+
+
+5.As a user, 													 1
+I can change my working directory to any path.
+
+6.As a user, I can print the content 							 1
+of current directory that I am working on, 
+so that I can easily know 
+how many files and their names in the current directory.
+
+
+7.As a user, 													 1.5				
+I can print out my current working directory path at any time,
+so that I can know where my current directory 
+is throughout the whole path.
+
+
+8.As a user, 													 1.5
+I can save my current working directory as history, 
+so that I can recall it at anytime.
+b. Time estimate: 1.5 hours
+
+9.As a user,													 1.5
+I can change my current directory to my previous directory 
+(which saved in history),
+so that I can keep work on the old directory as I want.
+
+10.As a user, I want to be able to access the commands 			 2
+I have previously entered into the shell
+
+11.As a user, 													 1
+I want to be able to easily view the contents of a file, 
+or multiple files concatenated
+
+12.As a user, 													 2
+I want to be able to output a String to the shell, 
+and be able to write that String to a file, or append it to a file
+
+13.As a user, I want to know what each command does              1
+and to find out their definitions in this program, 
+so that I can use them more fluently.
+
+15.As a user, I can have a place to work on.					 2
+
+16.As a user, I can write thing in a certain place.				 2
+

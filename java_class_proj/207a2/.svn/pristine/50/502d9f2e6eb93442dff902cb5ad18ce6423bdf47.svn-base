@@ -1,0 +1,11 @@
+Class name: Cd
+Parent Class: Command
+Subclasses: None
+Responsibilities:
+*Change current directory to the directory that is specified. 
+which may be relative to the current directory or may be a full path.
+*Provide an error if the argument is not a valid path or directory
+(ex. path or directory that are not exist)
+Collaborators:
+*FileSystem
+*Directory

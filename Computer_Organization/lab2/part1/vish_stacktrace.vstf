@@ -1,0 +1,41 @@
+# Current time Sun Jun  5 15:08:44 2016
+# ModelSim Stack Trace
+# Program = vish
+# Id = "10.3d"
+# Version = "2014.10"
+# Date = "Oct  7 2014"
+# Platform = linuxpe
+# 0    0xf7d571cf: '<unknown (@0xf7d571cf)>'
+# 1    0x082b796b: '<unknown (@0x82b796b)>'
+# 2    0x082b9099: '<unknown (@0x82b9099)>'
+# 3    0x082b9467: '<unknown (@0x82b9467)>'
+# 4    0x082b95e5: 'wlfSymByPattern64 + 0x155' in '/s/appspace/quartus-15.0.0.145/modelsim_ase/linuxaloem/vish'
+# 5    0x082b9673: 'argsToSymbolList + 0x73' in '/s/appspace/quartus-15.0.0.145/modelsim_ase/linuxaloem/vish'
+# 6    0x0816de71: 'tclprim_examine + 0x1891' in '/s/appspace/quartus-15.0.0.145/modelsim_ase/linuxaloem/vish'
+# 7    0x084bc47d: '<unknown (@0x84bc47d)>'
+# 8    0x084bdf36: '<unknown (@0x84bdf36)>'
+# 9    0x084be525: 'Tcl_EvalEx + 0x35' in '/s/appspace/quartus-15.0.0.145/modelsim_ase/linuxaloem/vish'
+# 10   0x084be98c: 'TclEvalObjEx + 0x3fc' in '/s/appspace/quartus-15.0.0.145/modelsim_ase/linuxaloem/vish'
+# 11   0x084c59f2: '<unknown (@0x84c59f2)>'
+# 12   0x084bc47d: '<unknown (@0x84bc47d)>'
+# 13   0x0850509a: '<unknown (@0x850509a)>'
+# 14   0x0854ca85: 'TclObjInterpProcCore + 0x115' in '/s/appspace/quartus-15.0.0.145/modelsim_ase/linuxaloem/vish'
+# 15   0x0854d022: 'TclObjInterpProc + 0x62' in '/s/appspace/quartus-15.0.0.145/modelsim_ase/linuxaloem/vish'
+# 16   0x084bc47d: '<unknown (@0x84bc47d)>'
+# 17   0x0850509a: '<unknown (@0x850509a)>'
+# 18   0x0850da3c: '<unknown (@0x850da3c)>'
+# 19   0x084be5fc: 'TclEvalObjEx + 0x6c' in '/s/appspace/quartus-15.0.0.145/modelsim_ase/linuxaloem/vish'
+# 20   0x084bea96: 'Tcl_EvalObjEx + 0x36' in '/s/appspace/quartus-15.0.0.145/modelsim_ase/linuxaloem/vish'
+# 21   0xf7fceeac: 'Itcl_EvalMemberCode + 0x3cc' in '/s/appspace/quartus/modelsim_ase/bin/../linux/itcl3.4/libitcl3.4.so'
+# 22   0x0ad039eb: '<unknown (@0xad039eb)>'
+# 23   0x09b07e23: '<unknown (@0x9b07e23)>'
+# 24   0xf7006a5d: '<unknown (@0xf7006a5d)>'
+# Current time Mon Jun 06 18:50:56 2016
+# ModelSim Stack Trace
+# Program = vish
+# Id = "10.3d"
+# Version = "2014.10"
+# Date = "Oct  7 2014"
+# Platform = win32pe
+
+Exception c0000005 has occurred at address 0057e792. Traceback:

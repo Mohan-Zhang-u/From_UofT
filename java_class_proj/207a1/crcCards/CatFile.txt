@@ -1,0 +1,7 @@
+Class name:CatFile
+Parent class:
+Subclasses:
+
+Responsibilities:
+Display the contents of File
+Collaborators:

@@ -1,0 +1,12 @@
+                  List of relations
+ Schema |          Name           | Type  |  Owner   
+--------+-------------------------+-------+----------
+ public | doctor                  | table | c5zhanii
+ public | drug_in_prescriptions   | table | c5zhanii
+ public | drug_sold_in_pharmacy   | table | c5zhanii
+ public | drugs                   | table | c5zhanii
+ public | patient                 | table | c5zhanii
+ public | pharmaceuticalcompanies | table | c5zhanii
+ public | pharmacy                | table | c5zhanii
+ public | prescriptions           | table | c5zhanii
+(8 rows)

@@ -1,0 +1,374 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage{geometry, amsmath, amsthm, latexsym, amssymb, graphicx} % Math, and margin stuff
+\usepackage{scrextend} % indentation stuff
+\usepackage{listings} % Package for code display
+\lstset{
+ columns=fullflexible,
+ basicstyle=\ttfamily,
+ escapeinside={(*@}{@*)},
+ breaklines=true
+}
+\usepackage{fontspec} % font stuff
+\geometry{margin=1in}
+\title{CSC265 A4}
+
+\begin{document}
+\begin{center}
+{\LARGE \bf CSC265 Assignment 4}\\
+\end{center}
+\textbf{Written by Kaiyang Wen, 1002123891, kai.wen@mail.utoronto.ca }\\
+\textbf{Revised by Mohan Zhang, 1002748716, morgan.zhang@mail.utoronto.ca }\\\\
+%Question 1. %Question 1. %Question 1. %Question 1.
+%Question 1. %Question 1. %Question 1. %Question 1.
+%Question 1. %Question 1. %Question 1. %Question 1.
+%Question 1. %Question 1. %Question 1. %Question 1.
+{\noindent\large\textbf{Question 1.}}
+
+{\setmainfont{Arial}
+{\noindent\large\it(part a)}
+
+We are going to perform the following steps in sequence.
+
+{\setmainfont{Times New Roman}
+(step 1) Construct a complete binary tree rooted at \textbf{r}. The keys of the leaves, denoted \textbf{leaf.first.key} are the element in set A; the root of each pair of leaves (aka. height-1 internal node) stores the result of comparison, denote them \textbf{root.first.key} and \textbf{root.second.key} with the former at least the latter. For those roots, define \textbf{root.second.prototype} to be null.
+
+(step 2) For each non-height-1 internal node of the binary tree, the root of each pair of subtrees stores the result of comparison between \textbf{left.first.key} and \textbf{right.first.key} into variables \textbf{root.first.key} and \textbf{root.second.key} with the former at least the latter. 
+
+The pointer to the root \textbf{x} of the subtree with \textbf{x.first.key} equals \textbf{root.first.key} will be stored into \textbf{root.second.versus}.
+
+The pointer to the root \textbf{y} of the subtree with \textbf{y.first.key} equals \textbf{root.second.key} will be stored into \textbf{root.second.prototype}.
+
+These pointers are the auxiliary variables.
+
+After step 2, \textbf{r.first.key} is the maximum of set A. Now we want to find the second maximum.
+
+(step 3) Run FindSecondLargest(r.second). The returned value will be the second maximum.
+\begin{lstlisting}
+        ; A recursive function which finds the second largest.
+        FindSecondLargest(u):
+            if u.prototype is null or u.versus.second.key < u.key:
+                return u.key
+            else:
+                return FindSecondLargest(u.versus.second)
+\end{lstlisting}
+}
+% --- CLAIM AND PROOF-----------------------------------------------------------
+{\it
+(claim) Step 1 through 3 have done $n$ - 2 + $\log_2 n$ comparisons in total.
+}
+\begin{addmargin}[15pt]{0in}
+{
+\textit{proof}
+
+In step 1 and 2, the total number of comparisons equals the number of internal nodes inside the complete binary tree rooted at r. So, there are total of $n$ - 1 comparisons done in step 1, since the number of internal nodes of a complete binary tree equals the number of leaves minus 1. 
+
+In step 3, I claim that the maximum number of comparisons equals the number of recursive calls to FindSecondLargest. In the worst case scenario, the if-test inside the function fails, and we have to call FindSecondLargest(u) until u.prototype is null, which will happen when u is located inside a height-1 internal node. See the specification in step 1 about those height-1 internal nodes. 
+
+Each recursive call is analogous to "jumping down" one step of the height, so there are total of $(\log_2 n)$ - 1 recursive calls.
+
+Combining all results, we obtain the total number of comparisons equals $n$ - 2 + $\log_2 n.$This finishes the proof.
+}
+\end{addmargin}
+% --- CLAIM AND PROOF - END ----------------------------------------------------
+% --- CLAIM AND PROOF---------------------------------------------------------
+{\it
+(claim) Step 1 through step 3 are correct.
+}
+\begin{addmargin}[15pt]{0in}
+{
+\textit{proof}
+
+Step 1 and 2 are trivial to prove, since picking the maximum over the set of maximums will guarantee the selected value will be the actual maximum of the union of two sets.
+
+For proving step 3, consider an induction on the size of A, with the hypothesis that FindSecondLargest(u) on any subset of A having the shape of a complete binary tree (specified in the procedure) rooted at u, will return the second largest element of A.
+
+When the size of A is 2, the auxiliary pointer will be null, and the set only has two elements, so we have the correct returned value.
+
+Consider the size of A is more than 2: 
+
+When the current parameter u has a key greater than the "versus.second" of u (something that's smaller than the global maximum but does not have any direct/indirect comparison with u), then since that u.versus is at least as large as the subtrees rooted at u.versus.second, we can directly return u as the second maximum.
+
+Otherwise, the recursion call guarantees a correct return value by induction hypothesis.
+
+By the time complexity analysis above, we have shown that the procedure indeed terminates.
+}
+\end{addmargin}
+% --- CLAIM AND PROOF - END --------------------------------------------------
+{\noindent\large\it(part b)}
+
+Let M denotes the largest element in an array, and let m denotes the second largest.
+
+We have an algorithm for an adversary whose output will be "<" or ">" with two indices of two elements in A[1 . . n] as input, while making sure the algorithm will perform at least n − 2 + $\lceil log_2 n\rceil$ comparisons.
+
+\begin{lstlisting}
+//  The algorithm will return either "P<Q" or "P>Q".
+//  The algorithm uses a global variable F, which is a forest (think of directed
+//       graph) and initially every element in A[1 . . n] is a 0-height-tree in F.
+Adversary_Algorithm_AA (P, Q):
+    if count(P.child)== count(Q.child):
+        let A be a child of B
+        return "P<Q"
+    else if count(P.child)<count(Q.child):
+        let P be a child of Q
+        return "P<Q"
+    else 
+        // Note that now count(P.child)>count(Q.child)
+        let Q be a child of P
+        return "P>Q"
+
+// Trees in this forest has the property that the number of children is less 
+// than those of parent... call the number of children of each root RC
+Init_forest( A[1 . . n]):
+    create a forest F with every element in A[1 . . n] being a 0-height-tree.
+\end{lstlisting}
+Facts:
+
+1. When there's only one tree in the forest F of adversary's algorithm, we have found M, since everything is less than this root.
+
+2. To make all nodes in F being rooted at one common node (call it M) (we assume that M exists), any algorithm we use to find M and m must perform at least n-1 comparisons. (Imagine putting everything besides M as the children/descendants of M.)
+
+3. To build a tree with RC=r at least 0 (for some arbitrary r), the only way is to to execute $Adversary_Algorithm_AA$ on two trees having RC $\ge$ r-1. (Since the adversary will provide a result to detach all children from one root and attach those to another.) 
+
+4. The adversary's algorithm makes sure that every root of the tree has as many children as possible.
+
+5. The parents will always have more number of children than that of their children. (It follows directly from the definition of such algorithm: "count(P.child)>count(Q.child) then let Q be a child of P".)
+
+% --- CLAIM AND PROOF---------------------------------------------------------
+{\it
+(claim) Any tree in F, whose RC=r, must contain at least $2^r$ nodes.
+}
+\begin{addmargin}[15pt]{0in}
+{
+\textit{proof (by induction)}
+
+\noindent\textit{(base case)}
+
+When r = 0, there is only 1 node, which satisfies the claim.
+
+When r = 1 , the only way to build this tree is to execute $Adversary_Algorithm_AA$ on two trees having RC $\ge$ 0. So, the number of nodes is at least 2.
+
+\noindent\textit{(induction-step)}
+
+Assume for RC = k, the tree contains at least $2^r$ nodes to be the induction hypothesis.
+
+Then, for RC = k + 1, the only way to build such tree is to execute $Adversary_Algorithm_AA$ on two trees having RC $\ge$ k. So, the number of nodes is at least $2^k$ + $2^k$ = $2^{k+1}$. This satisfies the claim, so it finishes the proof.
+}
+From the former claim, we know that every tree whose children does not have multiple parents will have RC = $\lceil log_2 n \rceil$
+
+Therefore, any algorithm which finds M and m, after performing all the necessary comparisons with the algorithm input specified by the adversary (which is the output of the adversary's algorithm), forest F will have only one tree (rooted at a single node), and whose node will have only one child (which is m). 
+
+Moreover, (for n $\geq$ 3) by the facts stated above, with any algorithm that will finally create one tree in F, the RC for that tree will be greater than 1. 
+
+So, the "final-version" tree in F will be created by performing $Adversary_Algorithm_AA$ on roots' children, and by the claim, we know that this will take at least $\lceil log_2 n \rceil$-1 comparisons ( in order to to remove multiple parents).
+
+So, the total number of comparisons will be at least n-1 + $\lceil log_2 n \rceil$ -1. 
+
+\textit{Q.E.D..}
+\end{addmargin}
+% --- CLAIM AND PROOF - END --------------------------------------------------
+
+%old version of proof, don't need.
+% \textit{proof (by induction on n)}
+% \noindent\textit{(base case)}
+% (Just to clarify, when n=1, we don't need any comparison.)
+%
+% When n=2, the number of comparison needed is 1, and f(n) = 1, which satisfies.
+%
+% When n=3, we need at least 3 comparisons (enumerate [1,3]), and f(n) = 3, which satisfies.
+%
+% When n=4, we need at least 4 comparisons (enumerate [1,4]), and f(n) = 4, which satisfies.
+%
+% \noindent\textit{(induction step)}
+%
+% Consider k is an arbitrary natural number... assume the claim holds for all k$\leq$n. 
+%
+% When n = k+1, we now have k+1 elements to pick M and m from.
+%
+% Lets first divide those elements in the size k+1 array into 2 groups, and call them L and J, where each of them contains $n_l$ and $n_j$ elements respectively. 
+%
+% The biggest element in L is denoted $M_l$, and the second biggest element in L is denoted $m_l$. The biggest element in J is denoted $M_j$, and the second biggest element in J is denoted $m_j$.
+%
+% Since M and m (of the big array of size k+1) must come from L or J, it makes no difference to find $M_l$, $m_l$, $M_j$ and $m_j$ first then find M and m by comparing them, or directly find M and m in the big array.
+%
+% Case 1: One of L and J contains only one element. Without lost of generality, assume such a group is denoted L.
+%
+% So, finding $M_j$ and $m_j$ takes at least f(k)= k − 2 + $\lceil log_2 k \rceil$ steps... then we need to compare $M_j$ and $m_j$ with the only element in L to get M and m.
+%
+% So, in this case f(k+1) $\geq$ f(k)+2=n+$\lceil log_2 n\rceil$ $\geq$ (n+1)-2+$\lceil log_2 (n+1) \rceil$ , the hypothesis holds.
+%
+% Case 2: $n_l$, $n_j$ $\geq$ 2 ($n_l$ + $n_j$=k+1).
+%
+% By induction hypothesis, finding $M_l$ and $m_l$,  $M_j$ and $m_j$ takes $n_l$-2 + $\lceil log_2 n_l\rceil$ + $n_j$ -2 + $\lceil log_2 n_j \rceil$, and finding M and m among $M_l$ and $m_l$,  $M_j$ and $m_j$ takes at least 4 comparison (from base case).
+%
+% So, f(k+1) = $n_l$-2 + $\lceil log_2 n_l \rceil$ + $n_j$ -2 + $\lceil log_2 n_j \rceil$ + 4 = k+1+ $\lceil log_2 n_l \rceil$+$\lceil log_2 n_j\rceil$ $\geq$\\
+% k+1+ $\lceil log_2$ ($n_l$ $\times$ $n_j) \rceil$ - 2 = k+1 -2 +  $\lceil log_2 (k+1)\rceil$. 
+%
+% The induction hypothesis holds for n=k+1.
+}
+~\\\\
+%Question 2. %Question 2. %Question 2. %Question 2.
+%Question 2. %Question 2. %Question 2. %Question 2.
+%Question 2. %Question 2. %Question 2. %Question 2.
+%Question 2. %Question 2. %Question 2. %Question 2.
+{\noindent\large\textbf{Question 2.}}
+
+{\setmainfont{Arial}
+{\noindent\large\it(part a)}
+
+Assume the swap operation takes constant time. After the first if-block, consider $H_a$ is rooted at r1 and $H_b$ is rooted at r2.
+
+% --- CLAIM AND PROOF---------------------------------------------------------
+{\it
+(invariant) After the first if-block, if r1.left is not null, then the Union call in the else-block runs in \\\indent\indent O($l(H_a)$ + $l(H_b)$ - 1).
+}
+\begin{addmargin}[15pt]{0in}
+{
+\textit{proof (by induction on the height of $H_a$)}
+
+{\noindent (base case)}
+
+When the height of $H_a$ is 1, then we are calling Union(r1.left, r2) in the else-block. Consider r1.left.key is less than every element in the left-most path of $H_b$... then for all recursive calls Union(r1.left, st), where st denotes the root of any subtrees of the left-most path of $H_b$, the test on the first if-test succeeds and the second if-test fails until it reaches a leaf of $H_b$. By definition of $l$, the number of recursion calls equals $l(H_b)$. Thus, in this case the recursive call runs in O($l(H_a)$ + $l(H_b)$ - 1).
+
+For any other cases, at the k'th recursive call, where k $\le l(H_b)$, the first if-test fails and the second if-test succeeds; a corresponding subtree will be connected to r1.left.left. No more operations will be performed afterwards. Therefore, the function still runs in O($l(H_a)$ + $l(H_b)$ - 1).
+
+{\noindent (induction step)}
+
+Assume that $l(H_u)$ equals $l(H_a)$ + 1. Notice that $H_u$ is defined after the first if-block.
+
+Let the S-Heap $H_v$ be rooted at r1.left, satisfying $l(H_v) = l(H_u) - 1 = l(H_u)$. By induction hypothesis, the sub-recursive call, Union(r1.left.left, r2) or Union(r2.left, r1.left), runs in \\O($l(H_v)$ + $l(H_b)$ - 1) = O($l(H_u)$ + $l(H_b)$ - 2).
+
+Accumulating the recursive call at the else-block during the current call, we obtain that the Union call in the else-block runs in O($l(H_u)$ + $l(H_b)$ - 1).
+}
+\end{addmargin}
+% --- CLAIM AND PROOF - END --------------------------------------------------
+
+Using the invariant and accumulating the current function call, we obtain that Union runs in \\O($l(H_u)$ + $l(H_b)$).
+
+{\noindent\large\it(part b)}
+
+Definition: A node is called heavy if the left subtree rooted at the node has a greater size than that of the right subtree. Otherwise, a node would be considered light.
+
+% --- CLAIM AND PROOF---------------------------------------------------------
+{\it
+(lemma) The total number of light nodes on the left path will not exceed $log n$ for any S-Heap of size n.
+}
+\begin{addmargin}[15pt]{0in}
+{
+\textit{proof}
+
+By definition, the heaviest light node of a heap of size $n$ will be the root of a complete binary tree. In such a tree, all nodes on the left path are light. The hight of the tree will be the length of the left path, and therefore it follows that the number of light nodes will not exceed $log n$.
+}
+\end{addmargin}
+% --- CLAIM AND PROOF - END --------------------------------------------------
+
+Now I am going to analyze the amortized time complexity of union.
+
+Use the accounting method. Let the actual cost be the number of comparisons performed by the union operation. Let the amortized cost be $l(H_1) + l(H_2)$.
+
+% --- CLAIM AND PROOF---------------------------------------------------------
+{\it
+(invariant) After every union operation, every heavy node will have a dollar.
+}
+\begin{addmargin}[15pt]{0in}
+{
+\textit{proof (by structural induction)}
+
+{\noindent \it (base case)}
+
+An empty heap unions with an arbitrary heap will not change anything, so the invariant is satisfied.
+
+{\noindent \it (induction step)}
+
+Consider $H_1$ and $H_2$ each contains i and j heavy nodes respectively.
+
+Notice that all visited heavy nodes will become light (since the function swaps the left and right of the tree). So in the worst case when every node on the left path are visited, the new left path contains at most $l(H_1) + l(H_2) - i - j$ heavy nodes. (A heavy node will become a light node, but a light node may or may not become a heavy node. For the worst case, we consider all light node will become heavy, since in such a condition the visiting left path will be relatively lengthy.)
+
+Therefore, we use the credit ($i + j$) to cover the cost for those heavy nodes themselves... since the amortized cost is the length of the two left paths, it is guaranteed that we have enough money to pay for the light nodes that will become heavy.
+}
+\end{addmargin}
+% --- CLAIM AND PROOF - END --------------------------------------------------
+
+Now it's time to do some arithmetics.
+
+amortized cost - actual cost
+
+\hspace*{1cm}$\le$ $(l(H_1) + l(H_2))$$- (l(H_1) + l(H_2) - i - j)$$+ (i + j)$
+
+\hspace*{1cm}$= 2i + 2j$
+
+Notice that $i + j$ denotes the minimum number of light nodes of the Heap. Let $N = sizeof(H_1) + sizeof(H_2)$. By lemma, $i + j$ is then bounded by $O(log N)$.
+
+% --- CLAIM AND PROOF---------------------------------------------------------
+{\it
+(corollary) Any sequence of m Insert and Extract-Min operations has amortized complexity O(log m).
+}
+\begin{addmargin}[15pt]{0in}
+{
+\textit{proof}
+
+Since Insert and ExtractMin composes Union, and the above analysis is just the "general case" for the amortized time complexity of Union, then we can directly use the result of the analysis. 
+
+Note that after such sequence of operation, the size of the heap can be at most m (consider m inserts).
+}
+\end{addmargin}
+% --- CLAIM AND PROOF - END --------------------------------------------------
+
+}
+~\\\\
+\end{document}
+%
+%
+%
+%
+%
+% % --- CLAIM AND PROOF---------------------------------------------------------
+% {\it
+% (claim) Lorem Ipsum.
+% }
+% \begin{addmargin}[15pt]{0in}
+% {
+% \textit{proof}
+%
+% \lipsum[1-3]
+% }
+% \end{addmargin}
+% % --- CLAIM AND PROOF - END --------------------------------------------------
+%
+
+% #include <sys/time.h>
+% #include <stdio.h>
+% #include <unistd.h>
+% #include <sys/wait.h>
+% #include <time.h>
+
+% int main(int argc, char const *argv[])
+% {
+    
+%     for (int num_p = 1; num_p < 31; ++num_p)
+%     {
+%         struct timeval starttime, endtime;
+%         double timediff;
+
+%         char n_arg[3];
+%         sprintf(n_arg, "%d", num_p);
+
+%         gettimeofday(&starttime, NULL);
+
+%         if (!fork())
+%         {
+%             execlp("./freq5", "./freq5", "-d", "/data/course/csc209/A3/dna650MB/", "-n", n_arg, NULL);
+%         }
+%         else
+%         {
+%             wait(NULL);
+%             gettimeofday(&endtime, NULL);
+%             timediff = (endtime.tv_sec - starttime.tv_sec) + (endtime.tv_usec - starttime.tv_usec) / 1000000.0;
+%             fprintf(stderr, "Time span for running with %d process(es): %.4f\n", num_p, timediff);
+%         }
+%     }
+
+%     return 0;
+% }

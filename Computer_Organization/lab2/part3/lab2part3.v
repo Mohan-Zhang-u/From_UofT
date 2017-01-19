@@ -1,0 +1,120 @@
+`timescale 1ns / 1ns
+
+module lab2part3 (SW, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR);
+	input [7:0] SW;
+	input [2:0] KEY;
+	output [6:0] HEX0; 
+	output [6:0] HEX1; 
+	output [6:0] HEX2; 
+	output [6:0] HEX3; 
+	output [6:0] HEX4; 
+	output [6:0] HEX5;
+	output [7:0] LEDR;
+	wire [7:0] w;
+
+	hex hex0 (.a(SW[3]),.b(SW[2]),.c(SW[1]),.d(SW[0]), .h0(HEX0[0]),.h1(HEX0[1]),.h2(HEX0[2]),.h3(HEX0[3]),.h4(HEX0[4]),.h5(HEX0[5]),.h6(HEX0[6]));
+	// connect the input: SW[3:0] to the input: a,b,c,d of module hex
+	// connect the output: h0~h6 to the output: HEX0[0:6] represent the segments on the board 
+	hex hex2 (.a(SW[7]),.b(SW[6]),.c(SW[5]),.d(SW[4]), .h0(HEX2[0]), .h1(HEX2[1]),.h2(HEX2[2]),.h3(HEX2[3]),.h4(HEX2[4]),.h5(HEX2[5]),.h6(HEX2[6]));
+	// connect the input: SW[7:4] to the input: a,b,c,d of module hex
+	// connect the output: h0~h6 to the output: HEX2[0:6] represent the segments on the board 
+
+	hex hex4 (.a(w[3]),.b(w[2]),.c(w[1]),.d(w[0]),.h0(HEX4[0]),.h1(HEX4[1]),.h2(HEX4[2]),.h3(HEX4[3]),.h4(HEX4[4]),.h5(HEX4[5]),.h6(HEX4[6]));
+	hex hex5 (.a(w[7]),.b(w[6]),.c(w[5]),.d(w[4]), .h0(HEX5[0]),.h1(HEX5[1]),.h2(HEX5[2]),.h3(HEX5[3]),.h4(HEX5[4]),.h5(HEX5[5]),.h6(HEX5[6]));
+	//connect the input from wire to input: abcd of module hex 
+
+
+	assign HEX1[5:0] = 0, HEX3[5:0] = 0, HEX1[6] = 1, HEX3[6] = 1; 
+	// set hex0 and hex3 display zero
+
+	alu all(.key(KEY[2:0]), .a(SW[7:4]), .b(SW[3:0]), .ALUout(w[7:0]));
+	// connect the input of SW[7:0] and KEY[2:0]to the input: a,b  in module alu
+	// connect the output of LEDR[7:0] to the output ALUout[7:0] in module alu 
+
+	assign LEDR [7:0] = w [7:0];	
+	// set the output of the LEDR to the wire (which connect)
+
+endmodule
+
+
+module alu(key, a, b, ALUout);
+	input [2:0] key;
+	input [3:0] a;
+	input [3:0] b;
+	output [7:0] ALUout;
+	wire [7:0] w;
+	wire x1; 
+	wire x2;
+	// x1 connect 
+	//wire [7:0] nnn;
+
+	four_bit_full_adder fbfa1 (.a0(a[0]), .a1(a[1]), .a2(a[2]), .a3(a[3]), .b0(b[0]), .b1(b[1]), .b2(b[2]), .b3(b[3]), .ci(1'b0), .s0(w[0]), .s1(w[1]), .s2(w[2]), .s3(w[3]), .co(x1) );
+    	// connecting the input of alu to the output of fbfa module
+   	 // this is the hex
+    	//four_bit_full_adder fbfa2 (.ci(x1), .s0(w[4]), .s1(w[5]), .s2(w[6]), .s3(w[7]), .co(x2));
+    	
+	//four_bit_full_adder fbfa2 (.a0(nnn[0]), .a1(nnn[1]), .a2(nnn[2]), .a3(nnn[3]), .b0(nnn[4]), .b1(nnn[5]), .b2(nnn[6]), .b3(nnn[7]), .ci(x1), .s0(w[4]), .s1(w[5]), .s2(w[6]), .s3(w[7]), .co(x2));
+    	four_bit_full_adder fbfa2 (.a0(1'b0), .a1(1'b0), .a2(1'b0), .a3(1'b0), .b0(1'b0), .b1(1'b0), .b2(1'b0), .b3(1'b0), .ci(x1), .s0(w[4]), .s1(w[5]), .s2(w[6]), .s3(w[7]), .co(x2));
+    	
+	// 
+	reg [7:0] out;
+
+	always @(*) 
+	begin
+		case(key[2:0]) 
+			3'b111: out = w[7:0];
+			3'b110: out = a + b;
+			3'b101: out = {(a[3] | b[3]),(a[2] | b[2]),(a[1] | b[1]),(a[0] | b[0]),(a[3] ^ b[3]), (a[2] ^ b[2]), (a[1] ^ b[1]), (a[0] ^ b[0])};
+			3'b100: out = {8'b00000000, |{a,b}};
+			3'b011: out = {8'b00000000, &{a,b}};
+			3'b010: out = {a,b};
+			default: out = 8'b00000000;
+		endcase			
+	end
+
+	assign ALUout = out;
+
+endmodule
+
+
+module hex (a,b,c,d,h0, h1, h2, h3, h4, h5, h6);
+	input a,b,c,d;
+	output h0,h1,h2,h3,h4,h5,h6;
+
+	assign h0 = (~a & ~b & ~c & d) | (~a & b & ~c & ~d) | (a & ~b & c & d) | (a & b & ~c & d);
+	assign h1 = (a & b & c) | (b & c & ~d) | (a & c & d) | (a & b & ~c & ~d) | (~a & b & ~c & d);
+	assign h2 = (a & b & c) | (~a & ~b & c & ~d) | (a & b & ~c & ~d);
+	assign h3 = (~a & ~b & ~c & d) | (~a & b & ~c & ~d) | (b & c & d) | (a & ~b & c & ~d);
+	assign h4 = (~a & d) | (~a & b & ~c) | (~b & ~c & d);
+	assign h5 = (~a & ~b & d) | (~a & ~b & c) | (~a & c & d) | (a & b & ~c & d);
+	assign h6 = (~a & ~b & ~c) | (~a & b & c & d) | (a & b & ~c & ~d);
+
+endmodule
+
+
+module four_bit_full_adder (a0, a1, a2, a3, b0, b1, b2, b3, ci, s0, s1, s2, s3, co);
+    input a0, a1, a2, a3, b0, b1, b2, b3, ci;
+    output s0, s1, s2, s3, co;
+    
+    wire f0, f1, f2;
+    
+    full_adder fa0(.a(a0), .b(b0), .cin(ci), .sum(s0), .cout(f0));
+    full_adder fa1(.a(a1), .b(b1), .cin(f0), .sum(s1), .cout(f1));            
+    full_adder fa2(.a(a2), .b(b2), .cin(f1), .sum(s2), .cout(f2)); 
+    full_adder fa3(.a(a3), .b(b3), .cin(f2), .sum(s3), .cout(co));
+
+endmodule 
+
+module full_adder(a, b, cin, sum, cout);
+    input a, b, cin;
+    output sum, cout;
+    
+    //assign sum =  (~a & ~b & cin) | (~a & b & ~cin) | (a & ~b & ~cin) | (a & b & cin);
+    assign sum = a ^ b ^ cin;
+    //assign cout = (a & ~b & cin) | (~a & b & cin) | (a & b & ~cin) | (a & b & cin);
+    assign cout = (a & b) | (a & cin) | (b & cin);
+    
+endmodule
+
+
+

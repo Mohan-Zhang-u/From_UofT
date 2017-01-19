@@ -1,0 +1,79 @@
+                              Table "public.doctor"
+       Column        |         Type          | Modifiers | Storage  | Description 
+---------------------+-----------------------+-----------+----------+-------------
+ doctor_id           | character varying(20) | not null  | extended | 
+ name                | character varying(20) |           | extended | 
+ specialty           | character varying(20) |           | extended | 
+ years_of_experience | character varying(20) |           | extended | 
+Indexes:
+    "doctor_pkey" PRIMARY KEY, btree (doctor_id)
+Has OIDs: no
+
+                           Table "public.drug_in_prescriptions"
+            Column            |         Type          | Modifiers | Storage  | Description 
+------------------------------+-----------------------+-----------+----------+-------------
+ pharmaceuticalcompanies_name | character varying(20) | not null  | extended | 
+ trade_name                   | character varying(20) | not null  | extended | 
+ prescriptions_id             | character varying(20) | not null  | extended | 
+ quantity                     | character(20)         |           | extended | 
+Indexes:
+    "drug_in_prescriptions_pkey" PRIMARY KEY, btree (pharmaceuticalcompanies_name, trade_name, prescriptions_id)
+Has OIDs: no
+                           Table "public.drug_sold_in_pharmacy"
+            Column            |         Type          | Modifiers | Storage  | Description 
+------------------------------+-----------------------+-----------+----------+-------------
+ pharmaceuticalcompanies_name | character varying(20) | not null  | extended | 
+ trade_name                   | character varying(20) | not null  | extended | 
+ pharmacy_name                | character varying(20) | not null  | extended | 
+ pharmacy_address             | character varying(50) | not null  | extended | 
+ price                        | character(20)         |           | extended | 
+Indexes:
+    "drug_sold_in_pharmacy_pkey" PRIMARY KEY, btree (pharmaceuticalcompanies_name, trade_name, pharmacy_name, pharmacy_address)
+Has OIDs: no
+                                 Table "public.drugs"
+         Column          |         Type          | Modifiers | Storage  | Description 
+-------------------------+-----------------------+-----------+----------+-------------
+ pharmaceuticalcompanies | character varying(20) | not null  | extended | 
+ trade_name              | character varying(20) | not null  | extended | 
+ formula                 | character varying(20) |           | extended | 
+Indexes:
+    "drugs_pkey" PRIMARY KEY, btree (pharmaceuticalcompanies, trade_name)
+Has OIDs: no
+                             Table "public.patient"
+      Column       |         Type          | Modifiers | Storage  | Description 
+-------------------+-----------------------+-----------+----------+-------------
+ healthcare_number | character varying(20) | not null  | extended | 
+ name              | character varying(20) |           | extended | 
+ address           | character varying(50) |           | extended | 
+ age               | character(4)          |           | extended | 
+ prime_doc_id      | character varying(20) |           | extended | 
+Indexes:
+    "patient_pkey" PRIMARY KEY, btree (healthcare_number)
+Has OIDs: no
+                  Table "public.pharmaceuticalcompanies"
+    Column    |         Type          | Modifiers | Storage  | Description 
+--------------+-----------------------+-----------+----------+-------------
+ name         | character varying(20) | not null  | extended | 
+ phone_number | character varying(20) |           | extended | 
+Indexes:
+    "pharmaceuticalcompanies_pkey" PRIMARY KEY, btree (name)
+Has OIDs: no
+                          Table "public.pharmacy"
+    Column    |         Type          | Modifiers | Storage  | Description 
+--------------+-----------------------+-----------+----------+-------------
+ name         | character varying(20) | not null  | extended | 
+ address      | character varying(50) | not null  | extended | 
+ phone_number | character varying(20) |           | extended | 
+Indexes:
+    "pharmacy_pkey" PRIMARY KEY, btree (name, address)
+Has OIDs: no
+                         Table "public.prescriptions"
+     Column      |         Type          | Modifiers | Storage  | Description 
+-----------------+-----------------------+-----------+----------+-------------
+ prescription_id | character varying(20) | not null  | extended | 
+ date            | character varying(20) |           | extended | 
+ doctor_id       | character varying(20) |           | extended | 
+ patient_id      | character varying(20) |           | extended | 
+Indexes:
+    "prescriptions_pkey" PRIMARY KEY, btree (prescription_id)
+Has OIDs: no

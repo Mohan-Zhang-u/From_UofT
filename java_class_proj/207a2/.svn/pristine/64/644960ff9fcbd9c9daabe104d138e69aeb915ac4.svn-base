@@ -1,0 +1,41 @@
+Sprint2Backlog.  
+February 23 to February 29
+
+User Stories from Product Backlog that we will address in this sprint:
+a) Directory
+As a user, it allow me to have a work place
+b) Exit
+ As a user, Allow me to exit the shell
+c) Cd
+As a user, Allow me to change my current working directory
+d) mkdr
+As a user, Allow me to create a new directory
+e) File
+As a user, I can get a plate to write and edit on it.
+
+Specific tasks to be accomplished:
+a-1. (directory) a working directory
+a-2. (directory) get track of where the working directory is
+b-1. (Exit)  to end the program
+c-1. (cd) locate the current directory
+c-2. (cd) known the location of the new directory that wants to change to 
+c-3. (cd) change directory
+d-1. (Mkdir) Create a new directory upon user command
+d-2. (Mkdir) Make sure directory does not already exist
+e-1. (File) create a system that can contain strings
+e-2. (File) allows writing and editing 
+
+
+These tasks are assigned as follows:
+
+User: Xiao Xia Bian
+Tasks: b-1, a-1, a-2
+
+User: Paul LoBuglio
+Tasks: a-1, a-2, e-1, e-2
+
+User: Mohan Zhang
+Tasks: c-1, c-2, c-3
+
+User: Yifei Ai
+Tasks: d-1, d-2

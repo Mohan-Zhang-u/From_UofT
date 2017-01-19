@@ -1,0 +1,145 @@
+
+-- for 3.1
+-- check existance
+select username from students;
+-- insert if not exist
+INSERT INTO students(username,permission,age,gender,native_country) VALUES ('ilovechicken',1,20,'m','India');
+
+-- for 3.2
+
+DROP TABLE IF EXISTS taken_courses;
+-- temperary, drop the table every time a new user logged in
+CREATE TABLE taken_courses (
+    course_id INTEGER, 
+    -- you can assemble course_id here as you wish.
+    dept_code TEXT,
+    course_number INTEGER,
+    course_name TEXT
+);
+
+-- for 3.3
+-- how to group topic by departments by join them
+drop view topic_gb_dep;
+create or replace view topic_gb_dep as 
+	select courses.dept_code, dept_name , topics.topic , courses.course_id,courses.course_number,courses.course_name
+	from courses, course_topics, departments, topics 
+	where topics.topic_id = course_topics.topic_id and courses.course_id = course_topics.course_id and courses.dept_code = departments.dept_code
+	order by courses.dept_code;
+
+-- selection
+select * from topics;
+-- insertion (The user does not have to rank all the available topics.)
+-- why is that related to course??
+DROP TABLE IF EXISTS interested_in_topics;
+-- temperary, drop the table every time a new user logged in
+CREATE TABLE interested_in_topics (
+	username TEXT REFERENCES students (username),
+	topic_id INTEGER,
+	rank INTEGER CHECK ((rank >= 1 AND rank <=5) OR rank = NULL)
+	);
+-- for 3.4
+
+-- why is that related to course??
+-- slection
+select * from Skills;
+
+DROP TABLE IF EXISTS user_skills;
+-- temperary, drop the table every time a new user logged in
+CREATE TABLE user_skills (
+	username TEXT REFERENCES students (username),
+	skill_id INTEGER,
+	rank INTEGER CHECK ((rank >= 1 AND rank <=5) OR rank = NULL)
+	);
+
+-- for 3.5
+-- compute distance with goal user
+
+create or replace view topsimilar as 
+select students.username, ((CASE WHEN  students.permission = goal.permission THEN 1 ELSE 0 END) + ((students.age-goal.age)*(students.age-goal.age)) + (CASE WHEN  students.gender=goal.gender THEN 1 ELSE 0 END) + (CASE WHEN  students.native_country=goal.native_country THEN 1 ELSE 0 END) ) as distance
+from students, (select * from students where username = 'ilovechicken' ) as goal
+where students.username <> goal.username
+order by distance
+limit 15;
+
+select * from topsimilar;
+-- courses user have already taken
+--  WAITED TO BE MODIFIED!!!!!!!!!!!!!!!!!!!!!!
+
+
+-- for 3.6
+-- those are two views assist to create final recommand courses.
+drop view stu_with_courses;
+create or replace view stu_with_courses as 
+select course_id, enrollments.username,letter_grades.letter_grade, min_grade, max_grade,course_ranking,instr_ranking
+from enrollments, Course_editions, letter_grades
+where enrollments.edition_id = Course_editions.edition_id and enrollments.letter_grade = letter_grades.letter_grade;
+
+-- those are two views assist to create final recommand courses.
+drop view recommend_courses_exp_grade;
+create or replace view recommend_courses_exp_grade as 
+	(select distinct stu_with_courses.course_id from topsimilar,stu_with_courses  where topsimilar.username = stu_with_courses.username 
+	except
+	select course_id from taken_courses); 
+
+-- for 3.6.1
+-- this helps create avg grade for courses
+drop view avg_course_grade;
+create or replace view avg_course_grade as 
+	select distinct recommend_courses_exp_grade.course_id, avg(max_grade) as avggrade
+	from stu_with_courses, recommend_courses_exp_grade
+	where username = any (select username from topsimilar) and stu_with_courses.course_id = recommend_courses_exp_grade.course_id
+	group by recommend_courses_exp_grade.course_id
+	order by avggrade desc
+	limit 5;
+
+
+-- final recommand course with course id
+-- “Recommend courses with the best predicted grade”
+drop view top5_recommend_course_best_grade;
+create or replace view top5_recommend_course_best_grade as 
+	select courses.*, letter_grades.letter_grade
+	from avg_course_grade, courses , letter_grades
+	where courses.course_id = avg_course_grade.course_id and avg_course_grade.avggrade <= letter_grades.max_grade and avg_course_grade.avggrade >= letter_grades.min_grade;
+
+-- for 3.6.2
+-- final "Recommend courses which promote my interests"
+drop view recommend_courses_topic_intr;
+create or replace view recommend_courses_topic_intr as 
+select topic_interests.course_id, avg(interest_after - interest_before) as avg_intr_increase
+from topic_interests, interested_in_topics
+where  interested_in_topics.topic_id = topic_interests.topic_id
+group by topic_interests.course_id
+order by avg_intr_increase desc;
+
+-- for 3.6.3
+-- final “Recommend courses which improve my skills”
+drop view recommend_courses_skill_impv;
+create or replace view recommend_courses_skill_impv as 
+select skill_rankings.course_id, avg(rank_after - rank_before) as avg_skill_impv
+from skill_rankings, user_skills
+where user_skills.skill_id = skill_rankings.skill_id
+group by skill_rankings.course_id
+order by avg_skill_impv desc;
+
+-- for 3.6.4
+-- avg course ranking
+drop view avg_ranking;
+create or replace view avg_ranking as 
+	select course_id, avg(course_ranking) as avg_ranking
+	from stu_with_courses
+	group by course_id
+	order by avg_ranking desc;
+
+-- final “Recommend courses which make me happy”
+drop view recommend_courses_happy;
+create or replace view recommend_courses_happy as 
+select avg_ranking.course_id, avg_ranking.avg_ranking
+from avg_ranking, 
+(select avg_ranking.course_id from avg_ranking
+except
+select course_id from taken_courses) as coid
+where coid.course_id = avg_ranking.course_id
+order by avg_ranking.course_id desc;
+;
+
+

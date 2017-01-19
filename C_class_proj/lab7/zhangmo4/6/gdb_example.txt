@@ -1,0 +1,129 @@
+Script started on Fri Nov  4 13:10:58 2016
+b3185-09:~/Desktop/csc209/prep6% v[Kgdb overflow
+GNU gdb (Ubuntu 7.7.1-0ubuntu5~14.04.2) 7.7.1
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from overflow...done.
+(gdb) break line3     31
+Breakpoint 1 at 0x4006e1: file overflow.c, line 31.
+(gdb) run
+Starting program: /h/u9/c5/00/zhangmo4/Desktop/csc209/prep6/overflow 
+Address of the variables:
+7fffffffe4d8 -> &j
+7fffffffe4e0 -> &a[0]
+7fffffffe4e4 -> &a[1]
+7fffffffe4e8 -> &a[2]
+7fffffffe4ec -> &a[3]
+7fffffffe4d4 -> &k
+7fffffffe4d0 -> &i
+
+Initial values: i = 4196208, j = 10, k = 10
+a = {0, 0, 0, 0}
+
+
+Breakpoint 1, main () at overflow.c:31
+31	        a[i] = i * 10;
+(gdb) conu tinue
+Continuing.
+i = 0, j = 10, k = 10		a = {0, 0, 0, 0}
+
+Breakpoint 1, main () at overflow.c:31
+31	        a[i] = i * 10;
+(gdb) display i
+1: i = 1
+(gdb) display a[i]
+2: a[i] = 0
+(gdb) next
+32	        printf("i = %d, j = %d, k = %d\t\t", i, j, k);
+2: a[i] = 10
+1: i = 1
+(gdb) nextdisplay a[i]i[K(gdb) [1Pcontinue
+Continuing.
+i = 1, j = 10, k = 10		a = {0, 10, 0, 0}
+
+Breakpoint 1, main () at overflow.c:31
+31	        a[i] = i * 10;
+2: a[i] = 0
+1: i = 2
+(gdb) next
+32	        printf("i = %d, j = %d, k = %d\t\t", i, j, k);
+2: a[i] = 20
+1: i = 2
+(gdb) nextcontinue
+Continuing.
+i = 2, j = 10, k = 10		a = {0, 10, 20, 0}
+
+Breakpoint 1, main () at overflow.c:31
+31	        a[i] = i * 10;
+2: a[i] = 0
+1: i = 3
+(gdb) continue(gdb) [4Pnext
+32	        printf("i = %d, j = %d, k = %d\t\t", i, j, k);
+2: a[i] = 30
+1: i = 3
+(gdb) nextcontinue        net xt
+33	        printf("a = {%d, %d, %d, %d}\n", a[0], a[1], a[2], a[3]);
+2: a[i] = 30
+1: i = 3
+(gdb) next
+i = 3, j = 10, k = 10		a = {0, 10, 20, 30}
+30	    for (i = 0; i < OVERFLOW; i++) {
+2: a[i] = 30
+1: i = 3
+(gdb) next
+
+Breakpoint 1, main () at overflow.c:31
+31	        a[i] = i * 10;
+2: a[i] = 0
+1: i = 4
+(gdb) next
+32	        printf("i = %d, j = %d, k = %d\t\t", i, j, k);
+2: a[i] = 40
+1: i = 4
+(gdb) next
+33	        printf("a = {%d, %d, %d, %d}\n", a[0], a[1], a[2], a[3]);
+2: a[i] = 40
+1: i = 4
+(gdb) next
+i = 4, j = 10, k = 10		a = {0, 10, 20, 30}
+30	    for (i = 0; i < OVERFLOW; i++) {
+2: a[i] = 40
+1: i = 4
+(gdb) next
+35	    printf("i=%d, a[i]=%d",i,a[i]);
+2: a[i] = 0
+1: i = 5
+(gdb) next
+37	    return 0;
+2: a[i] = 0
+1: i = 5
+(gdb) next
+38	}
+2: a[i] = 0
+1: i = 5
+(gdb) next
+__libc_start_main (main=0x4005bd <main>, argc=1, argv=0x7fffffffe5d8, 
+    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
+    stack_end=0x7fffffffe5c8) at libc-start.c:321
+321	libc-start.c: No such file or directory.
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 9616] will be killed.
+
+Quit anyway? (y or n) u y
+b3185-09:~/Desktop/csc209/prep6% exit[K[K[K[Kexit
+exit
+
+Script done on Fri Nov  4 13:12:40 2016

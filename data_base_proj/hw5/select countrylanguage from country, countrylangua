@@ -1,0 +1,1 @@
+select countrylanguage from country, countrylanguage where code = countrycode and continent = 'North America'group by country.name;

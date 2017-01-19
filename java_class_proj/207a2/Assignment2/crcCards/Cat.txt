@@ -1,0 +1,13 @@
+Class name: Cat
+Parent class: Command
+Subclasses: none
+Responsibilities:
+*Display contents of provided file in shell
+*Provide an error if the argument provided is invalid
+*add files together and make it as a new file
+*add all .txt files together into a new file (out-file)
+Collaborators:
+*FileSystem
+*Directory
+*Command
+*File

@@ -1,0 +1,8 @@
+What did I do last time?
+    - I've added some more methods to FileSystem and Directory to make it a more friendly interface with the mock file system
+
+What do I plan to do now?
+    - Implement Pwd and get JShell functioning
+
+Am I blocked on anything?
+    - Not really.

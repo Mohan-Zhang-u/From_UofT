@@ -1,0 +1,19 @@
+n this assignment, you'll build an event-driven simulation for a grocery store,
+which will model customers using different types of checkout lines.
+
+
+Your finished product will be able to set up the simulation with data from file inputs, simulate a sequence of events,
+and report timing statistics after the simulation is complete that will help determine how successful the checkout line
+set-up was for that set of customer arrivals.
+
+giving each customer a unique string identifier.
+The number of items influences how long it takes for the customer to check out,
+
+Customers go to a checkout line to pay for their items. The number of items influences how long it takes for the
+customer to check out, but what those items are does not, and so the simulation should only keep track of the
+number of items each customer has.
+
+The new events should be spaced 1 second apart
+assume there is always at least one open line that has space for the customer.
+
+the final timestamp should consider the final customer whose check line is closed.

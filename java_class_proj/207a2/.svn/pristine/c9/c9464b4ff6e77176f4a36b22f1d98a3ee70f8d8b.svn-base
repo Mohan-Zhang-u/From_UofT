@@ -1,0 +1,8 @@
+Class name: Pwd
+Parent class: Command
+Subclasses: none
+Responsibilities:
+*Print the current working directory (including the whole path)
+Collaborators:
+*FileSystem
+*Directory

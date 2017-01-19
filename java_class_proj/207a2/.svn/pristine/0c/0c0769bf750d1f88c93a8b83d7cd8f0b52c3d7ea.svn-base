@@ -1,0 +1,11 @@
+Class name: FileSystem
+Parent Class: none
+Subclasses: Directory, File
+Responsibilities:
+*Store all directory information
+*Allow for modification of directories and files
+*access command to Directory and File
+*Keeps track of the current directory for the User
+Collaborators:
+*Directory
+*Command

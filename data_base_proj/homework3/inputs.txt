@@ -1,0 +1,31 @@
+alter table "StarsIn"
+add foreign key(movietitle,movieyear)REFERENCES Movie(title,year)
+ON DELETE CASCADE;
+alter table "StarsIn"
+add foreign key (starname) references "MovieStar"(name)
+ON DELETE CASCADE;
+
+alter table movie
+add foreign key (producerc) references "MovieExec"(certn) ON DELETE SET NULL;
+
+alter table movie
+add foreign key (studioname) references studio(name) ON UPDATE CASCADE;
+
+alter table studio
+add foreign key (prescertn) references "MovieExec"(certn);
+
+
+alter table movie add constraint check_year CHECK(year >= 1915);
+
+alter table movie add constraint check_length1 CHECK(length<=250);
+alter table movie add constraint check_length2 CHECK(length>=60);
+
+alter table studio add constraint check_stuname CHECK(name LIKE 'Disney' OR name LIKE 'Fox' OR name LIKE 'MGM' OR name LIKE 'Paramount');
+
+alter table movie add constraint check_bw CHECK(NOT incolor=0 OR length <= 90);
+
+
+???????////alter table "MovieStar" add constraint check_bw CHECK(gender<>'M' OR birthdate LIKE (((19[6-9][0-9]-[0-9][0-9]-[0-9][0-9])|([2][0][0-1][0-7]-[0-9][0-9]-[0-9][0-9]))));
+alter table "MovieStar" add constraint check_bw CHECK(gender<>'M' OR birthdate >= '1960-01-01');
+
+

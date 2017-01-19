@@ -1,0 +1,92 @@
+Question 1: More than once: line 11(B), line 23(E).
+
+Question 2: Possible orders:
+A
+B
+D
+E
+B
+C
+E
+
+A
+B
+D
+B
+E
+C
+E
+
+A
+B
+D
+B
+C
+E
+E
+
+A
+B
+B
+D
+C
+E
+
+A
+B
+B
+D
+E
+C
+E
+
+A
+B
+B
+D
+C
+E
+E
+
+A
+B
+B
+C
+D
+E
+E
+
+A
+B
+C
+B
+D
+E
+E
+
+A
+B
+C
+B
+E
+D
+E
+
+A
+B
+C
+E
+B
+D
+E
+
+Question 3: How many processes are created
+2: 4
+3: 8
+4: 16
+
+Question 4: 
+400 -> 401 -> 402 -> 403
+       401 -> 404
+400 -> 405 -> 406
+400 -> 407

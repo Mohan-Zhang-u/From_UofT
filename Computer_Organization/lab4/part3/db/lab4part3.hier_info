@@ -1,0 +1,603 @@
+|lab4part3
+SW[0] => SW[0].IN1
+SW[1] => SW[1].IN1
+SW[2] => SW[2].IN1
+KEY[0] => KEY[0].IN2
+KEY[1] => KEY[1].IN1
+CLOCK_50 => CLOCK_50.IN2
+LEDR[0] <= shift_12bit:s12bit.out
+
+
+|lab4part3|morsetobi:morsetobinary
+inn[0] => Equal0.IN2
+inn[0] => Equal1.IN0
+inn[0] => Equal2.IN2
+inn[0] => Equal3.IN1
+inn[0] => Equal4.IN2
+inn[0] => Equal5.IN1
+inn[0] => Equal6.IN2
+inn[0] => Equal7.IN2
+inn[1] => Equal0.IN1
+inn[1] => Equal1.IN2
+inn[1] => Equal2.IN0
+inn[1] => Equal3.IN0
+inn[1] => Equal4.IN1
+inn[1] => Equal5.IN2
+inn[1] => Equal6.IN1
+inn[1] => Equal7.IN1
+inn[2] => Equal0.IN0
+inn[2] => Equal1.IN1
+inn[2] => Equal2.IN1
+inn[2] => Equal3.IN2
+inn[2] => Equal4.IN0
+inn[2] => Equal5.IN0
+inn[2] => Equal6.IN0
+inn[2] => Equal7.IN0
+clear => outtt.OUTPUTSELECT
+clear => outtt.OUTPUTSELECT
+clear => outtt.OUTPUTSELECT
+clear => outtt.OUTPUTSELECT
+clear => outtt.OUTPUTSELECT
+clear => outtt.OUTPUTSELECT
+clear => outtt.OUTPUTSELECT
+clear => outtt.OUTPUTSELECT
+clear => outtt.OUTPUTSELECT
+clear => outtt.OUTPUTSELECT
+clear => outtt.OUTPUTSELECT
+clear => outtt.OUTPUTSELECT
+clock => outtt[0].CLK
+clock => outtt[1].CLK
+clock => outtt[2].CLK
+clock => outtt[3].CLK
+clock => outtt[4].CLK
+clock => outtt[5].CLK
+clock => outtt[6].CLK
+clock => outtt[7].CLK
+clock => outtt[8].CLK
+clock => outtt[9].CLK
+clock => outtt[10].CLK
+clock => outtt[11].CLK
+outt[0] <= outtt[0].DB_MAX_OUTPUT_PORT_TYPE
+outt[1] <= outtt[1].DB_MAX_OUTPUT_PORT_TYPE
+outt[2] <= outtt[2].DB_MAX_OUTPUT_PORT_TYPE
+outt[3] <= outtt[3].DB_MAX_OUTPUT_PORT_TYPE
+outt[4] <= outtt[4].DB_MAX_OUTPUT_PORT_TYPE
+outt[5] <= outtt[5].DB_MAX_OUTPUT_PORT_TYPE
+outt[6] <= outtt[6].DB_MAX_OUTPUT_PORT_TYPE
+outt[7] <= outtt[7].DB_MAX_OUTPUT_PORT_TYPE
+outt[8] <= outtt[8].DB_MAX_OUTPUT_PORT_TYPE
+outt[9] <= outtt[9].DB_MAX_OUTPUT_PORT_TYPE
+outt[10] <= outtt[10].DB_MAX_OUTPUT_PORT_TYPE
+outt[11] <= outtt[11].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|RateDivider:rdv
+Clear_b => q.OUTPUTSELECT
+Clear_b => p[3].ENA
+Clear_b => p[2].ENA
+Clear_b => p[1].ENA
+Clear_b => p[0].ENA
+Clear_b => p[4].ENA
+Clear_b => p[5].ENA
+Clear_b => p[6].ENA
+Clear_b => p[7].ENA
+Clear_b => p[8].ENA
+Clear_b => p[9].ENA
+Clear_b => p[10].ENA
+Clear_b => p[11].ENA
+Clear_b => p[12].ENA
+Clear_b => p[13].ENA
+Clear_b => p[14].ENA
+Clear_b => p[15].ENA
+Clear_b => p[16].ENA
+Clear_b => p[17].ENA
+Clear_b => p[18].ENA
+Clear_b => p[19].ENA
+Clear_b => p[20].ENA
+Clear_b => p[21].ENA
+Clear_b => p[22].ENA
+Clear_b => p[23].ENA
+Clear_b => p[24].ENA
+Clear_b => p[25].ENA
+Clear_b => p[26].ENA
+Clear_b => p[27].ENA
+Clear_b => p[28].ENA
+enable => q.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+enable => p.OUTPUTSELECT
+clock => p[0].CLK
+clock => p[1].CLK
+clock => p[2].CLK
+clock => p[3].CLK
+clock => p[4].CLK
+clock => p[5].CLK
+clock => p[6].CLK
+clock => p[7].CLK
+clock => p[8].CLK
+clock => p[9].CLK
+clock => p[10].CLK
+clock => p[11].CLK
+clock => p[12].CLK
+clock => p[13].CLK
+clock => p[14].CLK
+clock => p[15].CLK
+clock => p[16].CLK
+clock => p[17].CLK
+clock => p[18].CLK
+clock => p[19].CLK
+clock => p[20].CLK
+clock => p[21].CLK
+clock => p[22].CLK
+clock => p[23].CLK
+clock => p[24].CLK
+clock => p[25].CLK
+clock => p[26].CLK
+clock => p[27].CLK
+clock => p[28].CLK
+clock => q~reg0.CLK
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit
+loadval[0] => loadval[0].IN1
+loadval[1] => loadval[1].IN1
+loadval[2] => loadval[2].IN1
+loadval[3] => loadval[3].IN1
+loadval[4] => loadval[4].IN1
+loadval[5] => loadval[5].IN1
+loadval[6] => loadval[6].IN1
+loadval[7] => loadval[7].IN2
+loadval[8] => loadval[8].IN1
+loadval[9] => loadval[9].IN1
+loadval[10] => loadval[10].IN1
+loadval[11] => loadval[11].IN1
+load_n => load_n.IN12
+reset_n => reset_n.IN12
+clk => clk.IN12
+ShiftRight => ShiftRight.IN12
+ASR => ASR.IN1
+out[0] <= shifter_bit:b0.out
+out[1] <= out[1].DB_MAX_OUTPUT_PORT_TYPE
+out[2] <= out[2].DB_MAX_OUTPUT_PORT_TYPE
+out[3] <= out[3].DB_MAX_OUTPUT_PORT_TYPE
+out[4] <= out[4].DB_MAX_OUTPUT_PORT_TYPE
+out[5] <= out[5].DB_MAX_OUTPUT_PORT_TYPE
+out[6] <= out[6].DB_MAX_OUTPUT_PORT_TYPE
+out[7] <= out[7].DB_MAX_OUTPUT_PORT_TYPE
+out[8] <= out[8].DB_MAX_OUTPUT_PORT_TYPE
+out[9] <= out[9].DB_MAX_OUTPUT_PORT_TYPE
+out[10] <= out[10].DB_MAX_OUTPUT_PORT_TYPE
+out[11] <= out[11].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|mux2to1:m
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b11
+in => in.IN1
+LoadVal => LoadVal.IN1
+Load_n => Load_n.IN1
+ShiftRight => ShiftRight.IN1
+clk => clk.IN1
+reset_n => reset_n.IN1
+out <= w3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b11|mux2to1:M1
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b11|mux2to1:M2
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b11|Register:F0
+in => out~reg0.DATAIN
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+reset => out~reg0.ACLR
+clocks => out~reg0.CLK
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b10
+in => in.IN1
+LoadVal => LoadVal.IN1
+Load_n => Load_n.IN1
+ShiftRight => ShiftRight.IN1
+clk => clk.IN1
+reset_n => reset_n.IN1
+out <= w3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b10|mux2to1:M1
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b10|mux2to1:M2
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b10|Register:F0
+in => out~reg0.DATAIN
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+reset => out~reg0.ACLR
+clocks => out~reg0.CLK
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b9
+in => in.IN1
+LoadVal => LoadVal.IN1
+Load_n => Load_n.IN1
+ShiftRight => ShiftRight.IN1
+clk => clk.IN1
+reset_n => reset_n.IN1
+out <= w3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b9|mux2to1:M1
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b9|mux2to1:M2
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b9|Register:F0
+in => out~reg0.DATAIN
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+reset => out~reg0.ACLR
+clocks => out~reg0.CLK
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b8
+in => in.IN1
+LoadVal => LoadVal.IN1
+Load_n => Load_n.IN1
+ShiftRight => ShiftRight.IN1
+clk => clk.IN1
+reset_n => reset_n.IN1
+out <= w3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b8|mux2to1:M1
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b8|mux2to1:M2
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b8|Register:F0
+in => out~reg0.DATAIN
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+reset => out~reg0.ACLR
+clocks => out~reg0.CLK
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b7
+in => in.IN1
+LoadVal => LoadVal.IN1
+Load_n => Load_n.IN1
+ShiftRight => ShiftRight.IN1
+clk => clk.IN1
+reset_n => reset_n.IN1
+out <= w3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b7|mux2to1:M1
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b7|mux2to1:M2
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b7|Register:F0
+in => out~reg0.DATAIN
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+reset => out~reg0.ACLR
+clocks => out~reg0.CLK
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b6
+in => in.IN1
+LoadVal => LoadVal.IN1
+Load_n => Load_n.IN1
+ShiftRight => ShiftRight.IN1
+clk => clk.IN1
+reset_n => reset_n.IN1
+out <= w3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b6|mux2to1:M1
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b6|mux2to1:M2
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b6|Register:F0
+in => out~reg0.DATAIN
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+reset => out~reg0.ACLR
+clocks => out~reg0.CLK
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b5
+in => in.IN1
+LoadVal => LoadVal.IN1
+Load_n => Load_n.IN1
+ShiftRight => ShiftRight.IN1
+clk => clk.IN1
+reset_n => reset_n.IN1
+out <= w3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b5|mux2to1:M1
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b5|mux2to1:M2
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b5|Register:F0
+in => out~reg0.DATAIN
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+reset => out~reg0.ACLR
+clocks => out~reg0.CLK
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b4
+in => in.IN1
+LoadVal => LoadVal.IN1
+Load_n => Load_n.IN1
+ShiftRight => ShiftRight.IN1
+clk => clk.IN1
+reset_n => reset_n.IN1
+out <= w3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b4|mux2to1:M1
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b4|mux2to1:M2
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b4|Register:F0
+in => out~reg0.DATAIN
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+reset => out~reg0.ACLR
+clocks => out~reg0.CLK
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b3
+in => in.IN1
+LoadVal => LoadVal.IN1
+Load_n => Load_n.IN1
+ShiftRight => ShiftRight.IN1
+clk => clk.IN1
+reset_n => reset_n.IN1
+out <= w3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b3|mux2to1:M1
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b3|mux2to1:M2
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b3|Register:F0
+in => out~reg0.DATAIN
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+reset => out~reg0.ACLR
+clocks => out~reg0.CLK
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b2
+in => in.IN1
+LoadVal => LoadVal.IN1
+Load_n => Load_n.IN1
+ShiftRight => ShiftRight.IN1
+clk => clk.IN1
+reset_n => reset_n.IN1
+out <= w3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b2|mux2to1:M1
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b2|mux2to1:M2
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b2|Register:F0
+in => out~reg0.DATAIN
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+reset => out~reg0.ACLR
+clocks => out~reg0.CLK
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b1
+in => in.IN1
+LoadVal => LoadVal.IN1
+Load_n => Load_n.IN1
+ShiftRight => ShiftRight.IN1
+clk => clk.IN1
+reset_n => reset_n.IN1
+out <= w3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b1|mux2to1:M1
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b1|mux2to1:M2
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b1|Register:F0
+in => out~reg0.DATAIN
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+reset => out~reg0.ACLR
+clocks => out~reg0.CLK
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b0
+in => in.IN1
+LoadVal => LoadVal.IN1
+Load_n => Load_n.IN1
+ShiftRight => ShiftRight.IN1
+clk => clk.IN1
+reset_n => reset_n.IN1
+out <= w3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b0|mux2to1:M1
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b0|mux2to1:M2
+x => m.IN0
+y => m.IN0
+s => m.IN1
+s => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab4part3|shift_12bit:s12bit|shifter_bit:b0|Register:F0
+in => out~reg0.DATAIN
+out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+reset => out~reg0.ACLR
+clocks => out~reg0.CLK
+
+

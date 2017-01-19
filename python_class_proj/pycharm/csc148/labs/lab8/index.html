@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Binary Search Tree</title>
+    <style>
+        body {
+            background-color: #b3cfff;
+        }
+        .node circle {
+            fill: #ffffff;
+            stroke: #6594e6;
+            stroke-width: 3px;
+        }
+
+        .node text {
+            font: 12px sans-serif;
+        }
+
+        .edge {
+            fill: none;
+            stroke: #8fa5cc;
+            stroke-width: 3px;
+        }
+
+    </style>
+</head>
+<body>
+<script src="js/vendor/d3.min.js"></script>
+<script src="js/arbor.js"></script>
+
+<!-- data.js: Load `var data` into the namespace. JSON would be better,
+but makes local access difficult. -->
+<script src="data.js"></script>
+<script>
+    // Manually set the width of the tree to something sensible.
+    var width = 7;
+
+    // If there is one tree, display it. Otherwise use the timeout variable
+    // to create a slideshow through the trees.
+    // Assume timeout is time in seconds.
+    if (data.length == 1) {
+        arbor.draw(data[0].tree, width, data[0].height, 2);
+    } else if (data.length > 1) {
+        var currIndex = -1;
+        function drawTree() {
+            currIndex++;
+            arbor.clear();
+            arbor.draw(data[currIndex].tree, width, data[currIndex].height, 2);
+            if (currIndex < data.length - 1) {
+                setTimeout(drawTree, timeout * 1000);
+            }
+        }
+        drawTree();
+    }
+</script>
+</body>
+</html>

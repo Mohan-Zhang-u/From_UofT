@@ -1,0 +1,45 @@
+Sprint 1Backlog.  
+February 17 to February 22
+
+User Stories from Product Backlog that we will address in this sprint:
+a) JShell
+As a user, it allow me to enter another command if I enter an invalid command/argument list
+b) Exit
+ As a user, Allow me to exit the shell
+c) Cd
+As a user, Allow me to change my current working directory
+d) mkdr
+As a user, Allow me to create a new directory
+e) System 
+As a user, I can get track with what I am working with.
+
+Specific tasks to be accomplished:
+a-1. (JShell) Begin coding the structure of the command line interpreter
+a-2. (JShell) Have the shell continually prompt the user for input
+a-3. (Command) Check the command string for validity
+a-4. (JShell) If the command is invalid, prompt the user to enter again 
+a-5. (Command) If the command is valid, print the output
+b-1. (Exit)  to end the program
+c-1. (cd) locate the current directory
+c-2. (cd) known the location of the new directory that wants to change to 
+c-3. (cd) change directory
+d-1. (Mkdir) Create a new directory upon user command
+d-2. (Mkdir) Make sure directory does not already exist
+e-1. (System) create a system that can contain directory and file
+e-2. (System) the system can get track of directories and file 
+e-3. (Directory) Write the base code for the Directory class
+e-4. (File) Write the base code for the File class
+
+These tasks are assigned as follows:
+
+User: Xiao Xia Bian
+Tasks: a-1, a-2, b-1, e-2, e-3
+
+User: Paul LoBuglio
+Tasks: a-3, a-4, a-5, e-1, e-2
+
+User: Mohan Zhang
+Tasks: c-1, c-2, c-3
+
+User: Yifei Ai
+Tasks: d-1, d-2

@@ -1,0 +1,6 @@
+{
+  "cashier_count": 2,
+  "express_count": 3,
+  "self_serve_count": 4,
+  "line_capacity": 10
+}

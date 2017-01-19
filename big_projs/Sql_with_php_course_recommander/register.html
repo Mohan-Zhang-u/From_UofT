@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+  	<meta content='width=device-width, initial-scale=1.0' name='viewport' />
+  	<link rel="stylesheet" type="text/css" href="./bootstrap-min-min.css">
+	<link rel="stylesheet" type="text/css" href="./theme.css">
+	<script src="./scripts.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<div class="container login-outer">
+		<div class=login-logo></div><br>
+		<div class=login-container>
+			<input id=un type=username placeholder="Username*">
+			<input id=pw type=password placeholder="Password">
+			<input id=cpw type=password placeholder="Comfirm Password">
+			<input style="margin-top:25px;border-top:1px solid #ccc" id=age type=number min=0 placeholder="Age">
+			<select id=gender><option value="" hidden>Gender</option><option value='f'>Female</option><option value='m'>Male</option><option value=''>Other</option><option value=''>Prefer not to disclose</option></select>
+			<input id=cty type=text placeholder="Native Country">
+			<span id=noti>Please enter a valid password</span>
+			<a href="login.html" class="back secondary-btn">Cancel</a>
+			<div class="next primary-btn" onclick="register()">Register</div>
+		</div>
+
+		<div class=footer>
+			CSC343 Course Assignment<br>
+			Dr. Marina Barsky<br>
+			<br>
+			Made By<br>
+			Mohan Zhang &amp; Yanming Mai<br>
+			<br>
+			2016 Summer
+		</div>
+	</div>
+	<script type="text/javascript">initMain()</script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+Class name:CopyFile
+Parent class:
+Subclasses:
+
+Responsibilities:
+Copy File to a new directory or current directory.
+Collaborators:

@@ -1,0 +1,9 @@
+What did I do last time?
+    - I've added some common methods for all Commands to the Command superclass.
+
+What do I plan to do now?
+    - focus on, brain storm and aim to create a system or find a way out to how to modify the directory
+    - Set up the File System (Classes File, Directory, and FileSystem)
+
+Am I blocked on anything?
+    - Not really.

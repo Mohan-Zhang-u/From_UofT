@@ -1,0 +1,40 @@
+Overview:
+	This is a course work made by Jack Mai and Mohan Zhang for CSC343 Summer 2016 (Dr. Marina).
+	Simple. Clean. Fast. Consistent. 
+	Scripting languages: HTML5, CSS, JavaScript, PHP, PostgreSQL. 
+	Local server: Xampp with PostgreSQL.
+	For demo purpose only. Codes are not well optimized.
+	The server is capable to serve only one client (Temperary tables are not specific to sessions/connections)
+	Implemented for PC size screens, Chrome and with little information or SQL-injection protection.
+
+How to install:
+	1. Install Xampp to, say C:\Xampp\
+	2. Install PostgreSQL
+	3. Copy the containing folder A3 under C:\Xampp\htdocs\
+	4. Click on Apache's config->php.ini, uncomment 'extension=php_pdo_pgsql.dll', 'extension=php_pgsql.dll'
+	5. Click on Apache's config->httpd.conf, Add line 'LoadFile "C:\Xampp\php\libpq.dll"' at end
+	6. Run Xampp Control Panel, start Apache (1st one). If its status turns green, skip next step
+	7. In httpd.conf, replace the number in 'Listen 80' with a new port, say '8081', retry 6.
+	8. Open PgAdmin, create server 'CSC343' with password=mymjack, create database 'A3' in it.
+	9. Load up the database with files cea_db.sql and cea_data.sql
+	10. Open Chrome, go to Localhost/A3/login.html (or Localhost:8081/A3/login.html if you've been to 7.)
+	11. Enjoy
+
+
+Walkthrough:
+	Firstly, Register or log in. For registering only username is required. 
+	The users are then directed to select the courses they have taken, the topics they are interested in, and the skills they have. 
+	Now user has four choices of how the courses are recommended to the user. A list of courses along with the recommend reasons is then shown.
+	User has the choice to get another recommend list, or start over. Or, enter their own experiences.
+	The experiences are inserted into the database and is used for latter recommendations.
+	User can log out at any time.
+
+What's behind:
+	There was a complete password system.
+	There was a settings button.
+	Adding, removing are done instantly by JS. When submitting, queries (yes, unsafe) or JSON are sent to the server. For the latter the server assembles the query.
+	Many dependent spinners request information from server at run time. We could have printed all look up dictionaries to JS in the first place.
+	The enter experience page logs the complete SQL execution procedure to the console that may be seen by adding a breakpoint to ajax function (~line 318).
+	On the page where user selects how the recommendation should be made, the nearest neighbours are calculated silently on the server.
+	Both the server and JS produce same kinds of entries (Duplicate code exist). 
+	Some functions have evolved to serve different purposes than they were first designed to, but not renamed.

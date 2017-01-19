@@ -1,0 +1,7 @@
+Class name:MoveFile
+Parent class:
+Subclasses:
+
+Responsibilities:
+Move the File to a new directory or rename the file in the current directory.
+Collaborators:

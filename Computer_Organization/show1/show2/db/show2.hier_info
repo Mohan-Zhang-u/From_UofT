@@ -1,0 +1,144 @@
+|show2
+HEX0[0] <= hexall:u0.h0
+HEX0[1] <= hexall:u0.h1
+HEX0[2] <= hexall:u0.h2
+HEX0[3] <= hexall:u0.h3
+HEX0[4] <= hexall:u0.h4
+HEX0[5] <= hexall:u0.h5
+HEX0[6] <= hexall:u0.h6
+SW[0] => SW[0].IN1
+SW[1] => SW[1].IN1
+SW[2] => SW[2].IN1
+SW[3] => SW[3].IN1
+SW[4] => ~NO_FANOUT~
+SW[5] => ~NO_FANOUT~
+SW[6] => ~NO_FANOUT~
+SW[7] => ~NO_FANOUT~
+SW[8] => ~NO_FANOUT~
+SW[9] => ~NO_FANOUT~
+
+
+|show2|hexall:u0
+q => q.IN7
+w => w.IN7
+e => e.IN7
+r => r.IN7
+h0 <= hex0:hex00.port4
+h1 <= hex1:hex01.port4
+h2 <= hex2:hex02.port4
+h3 <= hex3:hex03.port4
+h4 <= hex4:hex04.port4
+h5 <= hex5:hex05.port4
+h6 <= hex6:hex06.port4
+
+
+|show2|hexall:u0|hex0:hex00
+q => m.IN0
+q => m.IN0
+q => m.IN0
+q => m.IN0
+w => m.IN1
+w => m.IN1
+w => m.IN1
+w => m.IN1
+e => m.IN1
+e => m.IN1
+e => m.IN1
+e => m.IN1
+r => m.IN1
+r => m.IN1
+r => m.IN1
+r => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|show2|hexall:u0|hex1:hex01
+q => m.IN0
+q => m.IN0
+q => m.IN0
+w => m.IN1
+w => m.IN1
+w => m.IN0
+e => m.IN1
+e => m.IN1
+e => m.IN1
+r => m.IN1
+r => m.IN1
+r => m.IN1
+r => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|show2|hexall:u0|hex2:hex02
+q => m.IN0
+q => m.IN0
+w => m.IN1
+w => m.IN1
+e => m.IN1
+e => m.IN1
+r => m.IN1
+r => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|show2|hexall:u0|hex3:hex03
+q => m.IN0
+q => m.IN0
+q => m.IN0
+w => m.IN1
+w => m.IN0
+w => m.IN1
+w => m.IN1
+e => m.IN1
+e => m.IN1
+e => m.IN1
+e => m.IN1
+r => m.IN1
+r => m.IN1
+r => m.IN1
+r => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|show2|hexall:u0|hex4:hex04
+q => m.IN0
+q => m.IN0
+w => m.IN1
+w => m.IN0
+e => m.IN1
+e => m.IN1
+r => m.IN1
+r => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|show2|hexall:u0|hex5:hex05
+q => m.IN0
+q => m.IN0
+q => m.IN0
+w => m.IN1
+w => m.IN1
+e => m.IN1
+e => m.IN1
+e => m.IN1
+r => m.IN1
+r => m.IN1
+r => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|show2|hexall:u0|hex6:hex06
+q => m.IN0
+q => m.IN0
+q => m.IN0
+w => m.IN1
+w => m.IN1
+w => m.IN1
+e => m.IN1
+e => m.IN1
+e => m.IN1
+r => m.IN1
+r => m.IN1
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
